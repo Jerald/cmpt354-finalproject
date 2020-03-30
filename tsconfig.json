@@ -1,0 +1,16 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "allowJs": false,
+        "strict": true,
+        "newLine": "lf",
+
+        "target": "ES5",
+        "module": "commonjs",
+
+        "outDir": "build/"
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
