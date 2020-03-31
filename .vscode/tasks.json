@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Compile typescript",
+            "label": "Build: compile typescript",
             "type": "typescript",
             "tsconfig": "tsconfig.json",
             "problemMatcher": [
@@ -13,7 +13,7 @@
             "group": "build"
         },
         {
-            "label": "Start typecript compiler in watch mode",
+            "label": "Watch: start typecript compiler in watch mode",
             "type": "typescript",
             "tsconfig": "tsconfig.json",
             "option": "watch",
@@ -23,7 +23,7 @@
             "group": "build"
         },
         {
-            "label": "Clean build folder",
+            "label": "Clean: empty build folder",
             "type": "shell",
             "linux": {
                 "command": "rm -r ${workspaceFolder}/build/*"

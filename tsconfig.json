@@ -3,12 +3,16 @@
     "compilerOptions": {
         "allowJs": false,
         "strict": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+
         "newLine": "lf",
 
-        "target": "ES5",
-        "module": "commonjs",
+        "target": "ES2019",
+        "module": "CommonJS",
 
-        "outDir": "build/"
+        "outDir": "build/",
+        "incremental": true
     },
     "include": [
         "src/**/*"

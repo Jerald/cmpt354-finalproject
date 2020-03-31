@@ -6,5 +6,4 @@
     "typescript.format.semicolons": "insert",
     "typescript.implementationsCodeLens.enabled": true,
     "typescript.preferences.quoteStyle": "double",
-    "typescript.referencesCodeLens.enabled": true
 }
