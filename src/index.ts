@@ -2,6 +2,14 @@ import * as pg from "pg";
 const Client = pg.Client;
 
 import * as express from "express";
+const server = express();
+
+server.get("/", (req, res) => {
+    res.send("Hello world!");
+    res.end();
+})
+
+server.listen(15640);
 
 async function main(): Promise<void>
 {
@@ -11,11 +19,6 @@ async function main(): Promise<void>
             rejectUnauthorized: false,
         }
     });
-
-    let server = express();
-
-    server.get("/", (req, res) => res.send("Hello world!"));
-    server.listen(15640);
 
     try
     {
