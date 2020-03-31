@@ -4,15 +4,19 @@ const Client = pg.Client;
 import * as express from "express";
 const server = express();
 
+const PORT = process.env.PORT;
+
 server.get("/", (req, res) => {
     res.send("Hello world!");
     res.end();
 })
 
-server.listen(15640);
+server.listen(PORT);
 
 async function main(): Promise<void>
 {
+    console.log("Port...? " + process.env.PORT);
+
     let client = new Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
