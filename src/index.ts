@@ -9,7 +9,7 @@ import * as config from "./config";
 async function main(): Promise<void>
 {
     server.get("/index", (req, res) => {
-        res.sendFile("../html/index.html", { root: __dirname });
+        res.sendFile("html/index.html", { root: __dirname + "../" });
     })
 
     server.post("/sql_submit", (req, res) => {
