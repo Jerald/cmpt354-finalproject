@@ -4,18 +4,35 @@ const Client = pg.Client;
 import * as express from "express";
 const server = express();
 
-const PORT = process.env.PORT;
-
-server.get("/", (req, res) => {
-    res.send("Hello world!");
-    res.end();
-})
-
-server.listen(PORT);
+import * as config from "./config";
 
 async function main(): Promise<void>
 {
-    console.log("Port...? " + process.env.PORT);
+    server.get("/", (req, res) => {
+        res.sendFile("../html/index.html", { root: __dirname });
+    })
+
+    server.post("/sql_submit", (req, res) => {
+        if (req.body.code == "iamacode")
+        {
+            client.query(req.body.sql)
+                .then((result: any[]) => {
+                    console.log("Query result: " + JSON.stringify(result));
+                    res.end("boop");
+                })
+                .catch((error: any) => {
+                    console.log("Query error: " + JSON.stringify(error));
+                    res.end("boop");
+                });
+        }
+        else
+        {
+            res.end("Bad boop!");
+        }
+    });
+    
+    server.use(express.json());
+    server.listen(config.PORT);
 
     let client = new Client({
         connectionString: process.env.DATABASE_URL,
