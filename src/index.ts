@@ -8,7 +8,7 @@ import * as config from "./config";
 
 async function main(): Promise<void>
 {
-    server.get("/", (req, res) => {
+    server.get("/index", (req, res) => {
         res.sendFile("../html/index.html", { root: __dirname });
     })
 
