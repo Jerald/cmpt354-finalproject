@@ -18,6 +18,6 @@ $("#submit").click(function (event)
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify(data),
-        success: () => console.log("Form submission success!")
+        success: () => { console.log("Form submission success!") }
     });
 });
