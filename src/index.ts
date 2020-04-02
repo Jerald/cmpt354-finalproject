@@ -21,7 +21,6 @@ async function main(): Promise<void>
         console.log("[Main] Trying to connect to client...");
         await client.connect();
         console.log("[Main] Successfully connected to client!");
-        await client.end();
     }
     catch (error)
     {
