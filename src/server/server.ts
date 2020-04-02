@@ -18,7 +18,7 @@ export class Server
     start(): void
     {
         this.express.get("/index", (req, res) => {
-            res.sendFile("/index.html", { root: config.SERVE_DIR });
+            res.sendFile("/html/index.html", { root: config.SERVE_DIR });
         });
         
         // this.express.post("/sql_submit", (req, res) => {
