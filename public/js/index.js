@@ -1,23 +1,26 @@
-$("#submit").click(function (event)
+function init()
 {
-    console.log("Form submitted...");
-
-    if (event)
+    $("#submit").click(function (event)
     {
-        event.preventDefault();
-    }
+        console.log("Form submitted...");
 
-    let data = {
-        sql: $("#sql").val(),
-        code: $("#code").val()
-    };
+        if (event)
+        {
+            event.preventDefault();
+        }
 
-    $.ajax({
-        method: "post",
-        url: "/sql_submit",
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify(data),
-        success: () => { console.log("Form submission success!") }
+        let data = {
+            sql: $("#sql").val(),
+            code: $("#code").val()
+        };
+
+        $.ajax({
+            method: "post",
+            url: "/sql_submit",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: () => { console.log("Form submission success!") }
+        });
     });
-});
+}

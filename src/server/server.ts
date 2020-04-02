@@ -28,6 +28,8 @@ export class Server
         
         this.express.post("/sql_submit", (req, res) => {
             console.log("[Server] Got a sql submit...");
+            console.log("[Server] Request body: " + req.body);
+            
             if (req.body.code == "iamacode")
             {
                 console.log("[Server] Sql submit code correct");
