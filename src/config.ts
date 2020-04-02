@@ -4,3 +4,5 @@ function portError()
     process.exit(1);
 }
 export const PORT = process.env.PORT || portError();
+
+export const SERVE_DIR = __dirname + "/../public";
