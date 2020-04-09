@@ -24,10 +24,6 @@ export class Server
         this.express.get("/", (req, res) => {
             res.redirect("/html/index.html");
         });
-
-        this.express.get("/public/js/index.js", (req, res) => {
-            res.sendFile("/js/index")
-        });
         
         this.express.post("/sql_submit", (req, res) => {
             console.log("[Server] Got a sql submit...");
