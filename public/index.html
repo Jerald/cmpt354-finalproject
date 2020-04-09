@@ -18,6 +18,28 @@
                 than $20,000 or to have more than 10 participants, including the principle investigator. Return both
                 IDs and the titles.
             </p>
+
+            <form action="/sql/q1" method="post">
+                <label for="q1_date">Choose a date:</label>
+                <select name="q1_date" id="q1_date">
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+
+            <p id="q1_results"></p>
         </div>
 
         <div id="q2">
@@ -27,6 +49,45 @@
                 and chemistry) (s)he is interested in, and only displaying the competitions where the submitted large
                 proposals have principle investigators specified by the user.
             </p>
+            <form action="/sql/q2" method="post">
+                <label for="q2_date">Choose a date:</label>
+                <select name="q2_date" id="q2_date">
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+
+                <br>
+
+                <label for="q2_area">Select an area:</label>
+                <select name="q2_area" id="q2_area">
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Physics">Physics</option>
+                </select>
+
+                <br>
+
+                <label for="q2_investigator">Enter a principle investigator name:</label>
+                <input type="text" name="q2_investigator" id="q2_investigator">
+
+                <br>
+
+                <input type="submit" value="Submit">
+            </form>
+
+            <p id="q2_results"></p>
         </div>
 
         <div id="q3">
@@ -35,6 +96,23 @@
                 For a user-specified area, find the proposal(s) that request(s) the largest amount of
                 money.
             </p>
+
+            <form action="/sql/q3" method="post">
+                <label for="q3_area">Select an area:</label>
+                <select name="q3_area" id="q3_area">
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Physics">Physics</option>
+                </select>
+
+                <br>
+
+                <input type="submit" value="Submit">
+            </form>
+
+            <p id="q3_results"></p>
         </div>
 
         <div id="q4">
@@ -43,6 +121,17 @@
                 For a user-specified date, find the proposals submitted before that date that are awarded
                 the largest amount of money.
             </p>
+
+            <form action="/sql/q4" method="post">
+                <label for="q4_date">Choose a date:</label>
+                <input type="date" name="q4_date" id="q4_date">
+
+                <br>
+
+                <input type="submit" value="Submit">
+            </form>
+
+            <p id="q4_results"></p>
         </div>
 
         <div id="q5">
@@ -51,6 +140,23 @@
                 For an area specified by the user, output its average requested/awarded discrepancy,
                 that is, the absolute value of the difference between the amounts.
             </p>
+
+            <form action="/sql/q5" method="post">
+                <label for="q5_area">Select an area:</label>
+                <select name="q5_area" id="q5_area">
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Physics">Physics</option>
+                </select>
+
+                <br>
+
+                <input type="submit" value="Submit">
+            </form>
+
+            <p id="q5_results"></p>
         </div>
 
         <div id="q6">
@@ -62,6 +168,12 @@
                 request and receive a list of reviewers who are not in conflict with the proposal being reviewed,
                 and who still have not reached the maximum of three proposals to review.
             </p>
+
+            <form action="/sql/q6" method="post">
+                <input type="submit" value="Submit">
+            </form>
+
+            <p id="q6_results"></p>
         </div>
 
         <div id="q7">
@@ -75,6 +187,12 @@
                 version just returns “Impossible”). Here, for a reviewer “not to be available” means that he or she
                 is scheduled to be in another room on the same day.
             </p>
+
+            <form action="/sql/q7" method="post">
+                <input type="submit" value="Submit">
+            </form>
+
+            <p id="q7_results"></p>
         </div>
     </body>
 </html>
