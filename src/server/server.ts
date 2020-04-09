@@ -22,7 +22,7 @@ export class Server
         this.express.use(express.static(config.SERVE_DIR));
 
         this.express.get("/", (req, res) => {
-            res.redirect("/html/index.html");
+            res.redirect("/index.html");
         });
         
         this.express.post("/sql_submit", (req, res) => {
