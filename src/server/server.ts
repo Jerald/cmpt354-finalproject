@@ -60,7 +60,7 @@ export class Server
         });
 
         this.express.post("/sql/q3", (req, res) => {
-            let area: Area | undefined = req.body?.q3.area;
+            let area: Area | undefined = req.body?.q3_area;
 
             if (area)
             {
