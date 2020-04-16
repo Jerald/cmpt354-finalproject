@@ -28,27 +28,28 @@ export class Server
         });
 
         this.express.post("/sql/q1", (req, res) => {
-            let date: Month | undefined = req.body?.q1_date;
+            let month: Month | undefined = req.body?.q1_date;
 
-            if (date == undefined)
+            if (month == undefined)
             {
                 res.json({ error: "No date supplied!" });
                 return;
             }
 
-            this.postgres.q1(date)
+            this.postgres.q1(month)
                 .then((result) => res.json({ result }))
                 .catch((error) => res.json({ error }));
         });
 
         this.express.post("/sql/q2", (req, res) => {
-            let date: Month | undefined = req.body?.q2_date; 
+            let month: Month | undefined = req.body?.q2_date; 
             let area: Area | undefined = req.body?.q2_area;
-            let investigator: string | undefined = req.body?.q2_investigator;
+            let first_name: string | undefined = req.body?.q2_first_name;
+            let last_name: string | undefined = req.body?.q2_last_name;
 
-            if (date && area && investigator)
+            if (month && area && first_name && last_name)
             {
-                this.postgres.q2(date, area, investigator)
+                this.postgres.q2(month, area, first_name, last_name)
                     .then((result) => res.json({ result }))
                     .catch((error) => res.json({ error }));
             }
