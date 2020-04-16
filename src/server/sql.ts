@@ -50,7 +50,7 @@ export class PostgresManager
 
     async q4(date: Date)
     {
-        return this.client.query(PostgresManager.q4_sql, [ date ]);
+        return this.client.query(PostgresManager.q4_sql, [ date.getTime() ]);
     }
 
     async q5(area: Area) 

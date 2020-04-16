@@ -1,7 +1,9 @@
+-- $1: Date, in UNIX time
+
 WITH pg AS (
   SELECT p.id,p.request_amount
   FROM proposal p JOIN grant_call g ON p.callid = g.id
-  WHERE $1 < p.submission_date
+  WHERE to_timestamp($1) < p.submission_date
 )
 
 SELECT pg.id
