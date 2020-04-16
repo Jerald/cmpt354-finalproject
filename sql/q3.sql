@@ -1,3 +1,5 @@
+-- $1: Area
+
 WITH pg AS(
   SELECT p.id,p.request_amount
   FROM proposal p JOIN grant_call g ON p.callid = g.id

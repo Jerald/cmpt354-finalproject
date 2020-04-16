@@ -1,5 +1,7 @@
 --assume that awarded and request_amount is not NULL
 
+-- $1: Area
+
 WITH pg AS(
   SELECT p.id,p.request_amount,p.awarded_amount
   FROM proposal p JOIN grant_call g ON p.callid = g.id
