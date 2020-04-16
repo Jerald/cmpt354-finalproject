@@ -75,7 +75,7 @@ export class Server
         });
 
         this.express.post("/sql/q4", (req, res) => {
-            let date: Date | undefined = req.body?.q4_date;
+            let date: Date | undefined = new Date(req.body?.q4_date);
 
             if (date)
             {
