@@ -4,6 +4,8 @@
 -- each deadline is at the end of some month, and every call is opened at the start of the
 -- year.
 
+-- $1: Date
+
 SELECT G.id, G.title
 FROM grant_call G
 WHERE EXTRACT(MONTH FROM TIMESTAMP $1) <= EXTRACT(MONTH FROM G.deadline) AND
