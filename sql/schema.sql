@@ -1,53 +1,53 @@
 CREATE TABLE researcher(
-id SERIAL PRIMARY KEY,
-firstname VARCHAR(30) NOT NULL,
-lastname VARCHAR(30) NOT NULL,
-email VARCHAR(50) UNIQUE NOT NULL,
-organization VARCHAR(10)
+    id SERIAL PRIMARY KEY,
+    firstname VARCHAR(30) NOT NULL,
+    lastname VARCHAR(30) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    organization VARCHAR(10)
 );
 
 CREATE TYPE callstatus AS ENUM('open','closed','paused','cancelled'); 
 
 CREATE TABLE call(
-id SERIAL PRIMARY KEY,
-title VARCHAR(50) NOT NULL,
-deadline DATE NOT NULL,
-description VARCHAR(250),
-area VARCHAR(30) NOT NULL,
-status callstatus DEFAULT 'open'
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    deadline DATE NOT NULL,
+    description VARCHAR(250),
+    area VARCHAR(30) NOT NULL,
+    status callstatus DEFAULT 'open'
 );
 
 CREATE TYPE appstatus AS ENUM('submitted','awarded','denied');
 
 CREATE TABLE proposal(
-id SERIAL PRIMARY KEY,
-callid INT REFERENCES call(id) NOT NULL,
-pi INT REFERENCES researcher(id) NOT NULL,
-status appstatus DEFAULT 'submitted' NOT NULL,
-amount NUMERIC(14,2)
+    id SERIAL PRIMARY KEY,                              -- Number
+    amount NUMERIC(14,2)                                -- Requested amount
+    callid INT REFERENCES call(id) NOT NULL,            -- Call it's for
+    pi INT REFERENCES researcher(id) NOT NULL,          -- Principle investigator
+    status appstatus DEFAULT 'submitted' NOT NULL,      -- Application status
 ); 
 
 CREATE TABLE collaborator(
-id SERIAL PRIMARY KEY,
-proposalid INT REFERENCES proposal(id) NOT NULL,
-researcherid INT REFERENCES researcher(id) NOT NULL,
-ispi BOOLEAN DEFAULT 'false' NOT NULL
+    id SERIAL PRIMARY KEY,
+    proposalid INT REFERENCES proposal(id) NOT NULL,
+    researcherid INT REFERENCES researcher(id) NOT NULL,
+    ispi BOOLEAN DEFAULT 'false' NOT NULL                   -- If the collaborator is the principle investigator
 );
 
 CREATE TABLE conflict(
-id SERIAL PRIMARY KEY,
-researcher1 INT REFERENCES researcher(id) NOT NULL,
-researcher2 INT REFERENCES researcher(id) NOT NULL,
-reason VARCHAR(50),
-expiry DATE
+    id SERIAL PRIMARY KEY,
+    researcher1 INT REFERENCES researcher(id) NOT NULL,
+    researcher2 INT REFERENCES researcher(id) NOT NULL,
+    reason VARCHAR(50),
+    expiry DATE
 );
 
 CREATE TABLE review(
-id SERIAL PRIMARY KEY,
-reviewerid INT REFERENCES researcher(id) NOT NULL,
-proposalid INT REFERENCES proposal(id) NOT NULL,
-deadline DATE NOT NULL,
-submitted BOOLEAN DEFAULT 'false' NOT NULL
+    id SERIAL PRIMARY KEY,
+    reviewerid INT REFERENCES researcher(id) NOT NULL,
+    proposalid INT REFERENCES proposal(id) NOT NULL,
+    deadline DATE NOT NULL,
+    submitted BOOLEAN DEFAULT 'false' NOT NULL
 );
 
 INSERT INTO researcher VALUES

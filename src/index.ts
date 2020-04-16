@@ -1,6 +1,9 @@
 import * as pg from "pg";
 const Client = pg.Client;
 
+import * as config from "./config";
+import { Server } from "./server/server";
+
 async function main(): Promise<void>
 {
     let client = new Client({
@@ -10,12 +13,14 @@ async function main(): Promise<void>
         }
     });
 
+    let server = new Server(client);
+    server.start();
+
     try
     {
         console.log("[Main] Trying to connect to client...");
         await client.connect();
         console.log("[Main] Successfully connected to client!");
-        await client.end();
     }
     catch (error)
     {
