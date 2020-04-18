@@ -9,7 +9,7 @@ with rc as(
   FROM  collaborator c
   JOIN conflict c1 on c.researcherid = c1.researcher1
   JOIN conflict c2 on c.researcherid = c2.researcher2
-  WHERE r.proposalid = $1
+  WHERE c.proposalid = $1
 )
 
 SELECT r.id
