@@ -1,0 +1,16 @@
+{{#if headers}}
+<table>
+    <tr>
+        {{#each headers}}
+            <th>{{this.name}}</th>
+        {{/each}}
+    </tr>
+    {{#each rows}}
+        <tr>
+            {{#each this}}
+                <td>{{this}}</td>
+            {{/each}}
+        </tr>
+    {{/each}}
+</table>
+{{/if}}

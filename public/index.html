@@ -38,8 +38,8 @@
                 <br>
                 <input type="submit" value="Submit">
             </form>
-
-            <div id="q1_results"></div>
+            
+            {{#if q1}} <div id="q1_results">{{> result_table}}</div> {{/if}}
         </div>
 
         <div id="q2">
@@ -88,7 +88,7 @@
                 <input type="submit" value="Submit">
             </form>
 
-            <div id="q2_results"></div>
+            {{#if q2}} <div id="q2_results">{{> result_table}}</div> {{/if}}
         </div>
 
         <div id="q3">
@@ -113,7 +113,7 @@
                 <input type="submit" value="Submit">
             </form>
 
-            <div id="q3_results"></div>
+            {{#if q3}} <div id="q3_results">{{> result_table}}</div> {{/if}}
         </div>
 
         <div id="q4">
@@ -132,7 +132,7 @@
                 <input type="submit" value="Submit">
             </form>
 
-            <div id="q4_results"></div>
+            {{#if q4}} <div id="q4_results">{{> result_table}}</div> {{/if}}
         </div>
 
         <div id="q5">
@@ -157,7 +157,7 @@
                 <input type="submit" value="Submit">
             </form>
 
-            <div id="q5_results"></div>
+            {{#if q5}} <div id="q5_results">{{> result_table}}</div> {{/if}}
         </div>
 
         <div id="q6">
@@ -174,7 +174,7 @@
                 <input type="submit" value="Submit">
             </form>
 
-            <div id="q6_results"></div>
+            {{#if q6}} <div id="q6_results">{{> result_table}}</div> {{/if}}
         </div>
 
         <div id="q7">
@@ -193,7 +193,7 @@
                 <input type="submit" value="Submit">
             </form>
 
-            <div id="q7_results"></div>
+            {{#if q7}} <div id="q7_results">{{> result_table}}</div> {{/if}}
         </div>
     </body>
 </html>

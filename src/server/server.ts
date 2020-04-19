@@ -1,5 +1,6 @@
 import { Client } from "pg";
 
+import * as hbs from "hbs";
 import * as express from "express";
 
 import * as config from "./../config";
@@ -14,7 +15,12 @@ export class Server
     constructor(sqlClient: Client)
     {
         this.postgres = new PostgresManager(sqlClient);
+        
         this.express = express();
+        this.express.set("view engine", "html");
+        this.express.engine('html', hbs.__express);
+
+        hbs.registerPartials(config.TEMPLATE_DIR);
     }
 
     start(): void
@@ -24,7 +30,7 @@ export class Server
         this.express.use(express.static(config.SERVE_DIR));
 
         this.express.get("/", (req, res) => {
-            res.redirect("/index.html");
+            res.render("index");
         });
 
         this.express.post("/sql/q1", (req, res) => {
