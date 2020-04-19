@@ -60,7 +60,7 @@ export class Server
         });
 
         this.express.post("/sql/q3", (req, res) => {
-            let area: Area | undefined = req.body?.q3.area;
+            let area: Area | undefined = req.body?.q3_area;
 
             if (area)
             {
@@ -75,7 +75,7 @@ export class Server
         });
 
         this.express.post("/sql/q4", (req, res) => {
-            let date: Date | undefined = req.body?.q4_date;
+            let date: Date | undefined = new Date(req.body?.q4_date);
 
             if (date)
             {
