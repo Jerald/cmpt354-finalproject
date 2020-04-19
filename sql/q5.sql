@@ -1,4 +1,4 @@
---assume that awarded and request_amount is not NULL
+--assume that request_amount is not NULL and amounts are >= 0.0
 
 -- $1: Area
 
@@ -9,4 +9,5 @@ WITH pg AS(
 )
 
 SELECT pg.id, ABS(AVG(pg.request_amount - pg.awarded_amount)) AS average_discrepancy
-FROM pg;
+FROM pg
+WHERE pg.awarded_amount >= 0.0;
