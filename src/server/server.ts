@@ -18,7 +18,8 @@ export class Server
         
         this.express = express();
         this.express.set("view engine", "html");
-        this.express.engine('html', hbs.__express);
+        this.express.set("views", config.SERVE_DIR);
+        this.express.engine("html", hbs.__express);
 
         hbs.registerPartials(config.TEMPLATE_DIR);
     }
