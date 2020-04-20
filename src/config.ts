@@ -9,4 +9,4 @@ export const SERVE_DIR = __dirname + "/../public";
 
 export const SQL_DIR = __dirname + "/../sql";
 
-export const TEMPLATE_DIR = __dirname + "/../templates";
+export const VIEWS_DIR = __dirname + "/../views";

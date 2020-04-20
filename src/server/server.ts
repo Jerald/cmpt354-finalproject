@@ -17,11 +17,9 @@ export class Server
         this.postgres = new PostgresManager(sqlClient);
         
         this.express = express();
-        this.express.set("view engine", "html");
-        this.express.set("views", config.SERVE_DIR);
-        this.express.engine("html", hbs.__express);
+        this.express.set("view engine", "hbs");
 
-        hbs.registerPartials(config.TEMPLATE_DIR);
+        hbs.registerPartials(config.VIEWS_DIR);
     }
 
     start(): void
@@ -31,7 +29,15 @@ export class Server
         this.express.use(express.static(config.SERVE_DIR));
 
         this.express.get("/", (req, res) => {
-            res.render("index");
+            res.render("index", (err: any, html: string) => {
+                if (err)
+                {
+                    console.log("[Server] Error with html rendering: " + err);
+                    return;
+                }
+
+                res.send(html);
+            });
         });
 
         this.express.post("/sql/q1", (req, res) => {
