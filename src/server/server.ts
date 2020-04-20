@@ -1,4 +1,4 @@
-import { Client } from "pg";
+import { Client, QueryResult } from "pg";
 
 import * as hbs from "hbs";
 import * as express from "express";
@@ -6,6 +6,7 @@ import * as express from "express";
 import * as config from "./../config";
 import { PostgresManager, Month, Area } from "./sql";
 
+type QueryName = "q1" | "q2" | "q3" | "q4" | "q5" | "q6" | "q7";
 
 export class Server
 {
@@ -29,15 +30,7 @@ export class Server
         this.express.use(express.static(config.SERVE_DIR));
 
         this.express.get("/", (req, res) => {
-            res.render("index", (err: any, html: string) => {
-                if (err)
-                {
-                    console.log("[Server] Error with html rendering: " + err);
-                    return;
-                }
-
-                res.send(html);
-            });
+            res.render("index");
         });
 
         this.express.post("/sql/q1", (req, res) => {
@@ -50,7 +43,7 @@ export class Server
             }
 
             this.postgres.q1(month)
-                .then((result) => res.json({ result }))
+                .then((result) => res.render("index", { q1: true, result }))
                 .catch((error) => res.json({ error }));
         });
 
@@ -63,7 +56,7 @@ export class Server
             if (month && area && first_name && last_name)
             {
                 this.postgres.q2(month, area, first_name, last_name)
-                    .then((result) => res.json({ result }))
+                    .then((result) => res.render("index", { q2: true, result }))
                     .catch((error) => res.json({ error }));
             }
             else
@@ -78,7 +71,7 @@ export class Server
             if (area)
             {
                 this.postgres.q3(area)
-                    .then((result) => res.json({ result }))
+                    .then((result) => res.render("index", { q3: true, result }))
                     .catch((error) => res.json({ error }));
             }
             else
@@ -93,7 +86,7 @@ export class Server
             if (date)
             {
                 this.postgres.q4(date)
-                    .then((result) => res.json({ result }))
+                    .then((result) => res.render("index", { q4: true, result }))
                     .catch((error) => res.json({ error }));
             }
             else
@@ -108,7 +101,7 @@ export class Server
             if (area)
             {
                 this.postgres.q5(area)
-                    .then((result) => res.json({ result }))
+                    .then((result) => res.render("index", { q5: true, result }))
                     .catch((error) => res.json({ error }));
             }
             else

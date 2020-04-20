@@ -1,11 +1,11 @@
-{{#if headers}}
+{{#if result}}
 <table>
     <tr>
-        {{#each headers}}
+        {{#each result.fields}}
             <th>{{this.name}}</th>
         {{/each}}
     </tr>
-    {{#each rows}}
+    {{#each result.rows}}
         <tr>
             {{#each this}}
                 <td>{{this}}</td>
