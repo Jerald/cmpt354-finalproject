@@ -30,7 +30,8 @@ export class PostgresManager
     static q3_sql: string = "";
     static q4_sql: string = "";
     static q5_sql: string = "";
-    static q6_sql: string = "";
+    static q6_insert_sql: string = "";
+    static q6_query_sql: string = "";
     static q7_sql: string = "";
 
     readonly client: pg.Client;
@@ -73,15 +74,21 @@ export class PostgresManager
         let query = make_query(PostgresManager.q5_sql, [ area ]);
         return this.client.query(query);
     }
+
+    async q6_query(proposal_id: number)
+    {
+        let query = make_query(PostgresManager.q6_query_sql, [ proposal_id ]);
+        return this.client.query(query);
+    }
 }
 
 (function ()
 {
-    type Prop = "q1_sql" | "q2_sql" | "q3_sql" | "q4_sql" | "q5_sql" | "q6_sql" | "q7_sql";
+    type Prop = "q1_sql" | "q2_sql" | "q3_sql" | "q4_sql" | "q5_sql" | "q6_insert_sql" | "q6_query_sql" | "q7_sql";
     
     function loadSql(propName: Prop)
     {
-        readFile(SQL_DIR + "/" + propName.replace("_", "."), (err, file) => {
+        readFile(SQL_DIR + "/" + propName.replace("_sql", ".sql"), (err, file) => {
             if (err)
             {
                 console.log("Error doing static loading of SQL file for: " + propName);
