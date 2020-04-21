@@ -138,6 +138,10 @@ export class Server
                     })
                     .catch((error) => res.json({ error }));
             }
+            else
+            {
+                res.json({ error: "Proposal ID was undefined!" });
+            }
         });
 
         this.express.post("/sql/q6_insert", (req, res) => {
@@ -161,8 +165,10 @@ export class Server
                         render_index(res, { q6_insert: true, body: req.body });
                     })
             }
-
-            render_index(res, {});
+            else
+            {
+                res.json({ error: "Body was undefined!" });
+            }
         })
         
         this.express.post("/sql_submit", (req, res) => {
