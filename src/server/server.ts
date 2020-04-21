@@ -11,8 +11,10 @@ import { PostgresManager, Month, Area } from "./sql";
 function render_index(res: express.Response, locals: any): void
 {
     let months: Month[] = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+    let areas: Area[] = ["Computer Science", "Biology", "Chemistry", "Mathematics", "Physics"];
 
-    locals["months"] = months;
+    locals.months = months;
+    locals.areas = areas
 
     console.log("[render_index] Locals to render with: " + JSON.stringify(locals));
 
@@ -55,7 +57,7 @@ export class Server
             }
 
             this.postgres.q1(month)
-                .then((result) => res.render("index", { q1: true, result }))
+                .then((result) => render_index(res, { q1: true, result, body: req.body }))
                 .catch((error) => res.json({ error }));
         });
 

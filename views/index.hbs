@@ -25,18 +25,6 @@
                     {{#each months}}
                         <option value="{{this}}" {{#if (eq body.q1_date this)}}selected{{/if}}>{{this}}</option>
                     {{/each}}
-                    {{!-- <option value="January" {{#if (eq body.q1_date "January")}}selected{{/if}}>January</option>
-                    <option value="February" {{#if (eq body.q1_date "February")}}selected{{/if}}>February</option>
-                    <option value="March" {{#if (eq body.q1_date "March")}}selected{{/if}}>March</option>
-                    <option value="April" {{#if (eq body.q1_date "April")}}selected{{/if}}>April</option>
-                    <option value="May" {{#if (eq body.q1_date "May")}}selected{{/if}}>May</option>
-                    <option value="June" {{#if (eq body.q1_date "June")}}selected{{/if}}>June</option>
-                    <option value="July" {{#if (eq body.q1_date "July")}}selected{{/if}}>July</option>
-                    <option value="August" {{#if (eq body.q1_date "August")}}selected{{/if}}>August</option>
-                    <option value="September" {{#if (eq body.q1_date "September")}}selected{{/if}}>September</option>
-                    <option value="October" {{#if (eq body.q1_date "October")}}selected{{/if}}>October</option>
-                    <option value="November" {{#if (eq body.q1_date "November")}}selected{{/if}}>November</option>
-                    <option value="December" {{#if (eq body.q1_date "December")}}selected{{/if}}>December</option> --}}
                 </select>
                 <br>
                 <input type="submit" value="Submit">
@@ -58,29 +46,15 @@
                     {{#each months}}
                         <option value="{{this}}" {{#if (eq body.q2_date this)}}selected{{/if}}>{{this}}</option>
                     {{/each}}
-                    {{!-- <option value="January">January</option>
-                    <option value="February">February</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="August">August</option>
-                    <option value="September">September</option>
-                    <option value="October">October</option>
-                    <option value="November">November</option>
-                    <option value="December">December</option> --}}
                 </select>
 
                 <br>
 
                 <label for="q2_area">Select an area:</label>
                 <select name="q2_area" id="q2_area">
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Biology">Biology</option>
-                    <option value="Chemistry">Chemistry</option>
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Physics">Physics</option>
+                    {{#each areas}}
+                        <option value="{{this}}" {{#if (eq body.q2_area this)}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
                 </select>
 
                 <br>
@@ -107,11 +81,9 @@
             <form action="/sql/q3" method="post" id="q3_form">
                 <label for="q3_area">Select an area:</label>
                 <select name="q3_area" id="q3_area">
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Biology">Biology</option>
-                    <option value="Chemistry">Chemistry</option>
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Physics">Physics</option>
+                     {{#each areas}}
+                        <option value="{{this}}" {{#if (eq body.q3_area this)}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
                 </select>
 
                 <br>
@@ -151,11 +123,9 @@
             <form action="/sql/q5" method="post" id="q5_form">
                 <label for="q5_area">Select an area:</label>
                 <select name="q5_area" id="q5_area">
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Biology">Biology</option>
-                    <option value="Chemistry">Chemistry</option>
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Physics">Physics</option>
+                    {{#each areas}}
+                        <option value="{{this}}" {{#if (eq body.q5_area this)}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
                 </select>
 
                 <br>
