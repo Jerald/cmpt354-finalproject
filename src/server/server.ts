@@ -14,6 +14,8 @@ function render_index(res: express.Response, locals: any): void
 
     locals["months"] = months;
 
+    console.log("[render_index] Locals to render with: " + JSON.stringify(locals));
+
     res.render("index", locals);
 }
 
