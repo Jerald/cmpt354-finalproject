@@ -60,14 +60,14 @@ CREATE TABLE meeting(
 );
 
 CREATE TABLE meeting_calls(
-       calls INT REFERENCES grant_call(id) NOT NULL
+       calls INT REFERENCES grant_call(id) NOT NULL,
        meet_date DATE,
        meet_loc TEXT,
        FOREIGN KEY (meet_date, meet_loc) REFERENCES meeting(scheduled, location)
 );
 
 CREATE TABLE meeting_attendees(
-       attendant INT REFERENCES research(id) NOT NULL,
+       attendant INT REFERENCES researcher(id) NOT NULL,
        meet_date DATE,
        meet_loc TEXT,
        FOREIGN KEY (meet_date, meet_loc) REFERENCES meeting(scheduled, location)
