@@ -1,4 +1,3 @@
-
 SELECT I.id
 FROM researcher I
 WHERE NOT EXISTS (
