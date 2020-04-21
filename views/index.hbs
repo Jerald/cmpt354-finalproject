@@ -146,7 +146,7 @@
                 and who still have not reached the maximum of three proposals to review.
             </p>
 
-            <form action="/sql/q6" method="post" id="q6_form">
+            <form action="/sql/q6_query" method="post" id="q6_query_form">
                 <label for="q6_proposal_id">Enter a proposal ID to see valid reviewers:</label>
                 <input type="number" name="q6_proposal_id" id="q6_proposal_id" placeholder="Proposal ID number" {{#with body.q6_proposal_id}}value="{{this}}"{{/with}}>
 
@@ -155,9 +155,9 @@
                 <input type="submit" value="Submit">
             </form>
 
-            {{#if q6}}
-                <form action="/sql/q6_assign" method="post" id="q6_assign_form">
-                    {{> q6_selection_table}}
+            {{#if q6_query}}
+                <form action="/sql/q6_insert" method="post" id="q6_insert_form">
+                    {{> q6_insert_table}}
                 </form>
             {{/if}}
         </div>

@@ -1,0 +1,32 @@
+{{#if result}}
+
+<label for="q6_proposal_id">Queried proposal id: </label>
+<input readonly type="number" name="q6_proposal_id" value="{{body.q6_proposal_id}}">
+
+{{!-- <label for="q6_reviewers_length">Number of reviewers found: </label>
+<input readonly type="number" name="q6_reviewers_length" value="{{q6.reviewers_length}}"> --}}
+
+<table>
+    <tr>
+        <th>Assign</th>
+
+        {{#each result.fields}}
+            <th>{{this.name}}</th>
+        {{/each}}
+    </tr>
+    {{#each result.rows}}
+        <tr>
+            <td>
+                <input type="checkbox" name="q6_insert_reviewers[]" id="q6_insert_reviewers_row{{@index}}" {{#each this}}value="{{this}}"{{/each}}>
+            </td>
+            {{#each this}}
+                <td>{{this}}</td>
+            {{/each}}
+        </tr>
+    {{/each}}
+</table>
+
+<input type="submit" value="Submit">
+{{else}}
+    <p>No valid reviewers found for proposal id!</p>
+{{/if}}

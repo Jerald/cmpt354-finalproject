@@ -80,6 +80,12 @@ export class PostgresManager
         let query = make_query(PostgresManager.q6_query_sql, [ proposal_id ]);
         return this.client.query(query);
     }
+
+    async q6_insert(proposal_id: number, reviewer_id: number)
+    {
+        let query = make_query(PostgresManager.q6_insert_sql, [ proposal_id, reviewer_id ]);
+        return this.client.query(query);
+    }
 }
 
 (function ()

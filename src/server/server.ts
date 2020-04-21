@@ -125,6 +125,31 @@ export class Server
             {
                 res.json({ error: "Area was undefined!" });
             }
+        });
+
+        this.express.post("/sql/q6_query", (req, res) => {
+            let proposal_id: number | undefined = req.body?.q6_proposal_id;
+
+            if (proposal_id)
+            {
+                this.postgres.q6_query(proposal_id)
+                    .then((result) => render_index(res, { q6_query: true, result, body: req.body }))
+                    .catch((error) => res.json({ error }));
+            }
+        });
+
+        this.express.post("/sql/q6_insert", (req, res) => {
+            let body: any | undefined = req.body;
+
+            if (body)
+            {
+                let proposal_id: number = body.q6_proposal_id;
+                let reviewers: number[] = body.q6_insert_reviewers;
+
+                console.log("Reviewers: " + reviewers);
+            }
+
+            render_index(res, {});
         })
         
         this.express.post("/sql_submit", (req, res) => {
