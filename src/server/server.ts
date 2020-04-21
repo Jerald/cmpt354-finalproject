@@ -12,7 +12,7 @@ function render_index(res: express.Response, locals: any): void
 {
     let months: Month[] = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
 
-    locals.months = months;
+    locals["months"] = months;
 
     res.render("index", locals);
 }
