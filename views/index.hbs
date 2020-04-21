@@ -60,8 +60,8 @@
                 <br>
 
                 <label for="q2_first_name">Enter a principle investigator name:</label>
-                <input type="text" name="q2_first_name" id="q2_first_name" placeholder="First name">
-                <input type="text" name="q2_last_name" id="q2_last_name" placeholder="Last name">
+                <input type="text" name="q2_first_name" id="q2_first_name" placeholder="First name" {{#with body.q2_first_name}}value="{{this}}"{{/with}}>
+                <input type="text" name="q2_last_name" id="q2_last_name" placeholder="Last name" {{#with body.q2_last_name}}value="{{this}}"{{/with}}>
 
                 <br>
 
@@ -103,7 +103,7 @@
 
             <form action="/sql/q4" method="post" id="q4_form">
                 <label for="q4_date">Choose a date:</label>
-                <input type="date" name="q4_date" id="q4_date">
+                <input type="date" name="q4_date" id="q4_date" {{#with body.q4_date}}value="{{this}}"{{/with}}>
 
                 <br>
 
