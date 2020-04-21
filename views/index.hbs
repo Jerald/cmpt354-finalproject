@@ -147,10 +147,19 @@
             </p>
 
             <form action="/sql/q6" method="post" id="q6_form">
+                <label for="q6_proposal_id">Enter a proposal ID to see valid reviewers:</label>
+                <input type="number" name="q6_proposal_id" id="q6_proposal_id" placeholder="Proposal ID number" {{#with body.q6_proposal_id}}value="{{this}}"{{/with}}>
+
+                <br>
+
                 <input type="submit" value="Submit">
             </form>
 
-            {{#if q6}} <div id="q6_results">{{> result_table}}</div> {{/if}}
+            {{#if q6}}
+                <form action="/sql/q6_assign" method="post" id="q6_assign_form">
+                    {{> q6_selection_table}}
+                </form>
+            {{/if}}
         </div>
 
         <div id="q7">
