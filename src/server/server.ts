@@ -34,7 +34,10 @@ export class Server
         this.express.set("view engine", "hbs");
 
         hbs.registerPartials(config.VIEWS_DIR);
-        hbs.registerHelper("eq", (v1, v2) => v1 == v2);
+        hbs.registerHelper("eq", (v1, v2) => {
+            console.log("[Eq] v1: " + v1 + ", v2: " + v2);
+            return v1 == v2;
+        });
     }
 
     start(): void
