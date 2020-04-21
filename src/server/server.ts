@@ -35,7 +35,6 @@ export class Server
 
         hbs.registerPartials(config.VIEWS_DIR);
         hbs.registerHelper("eq", (v1, v2) => {
-            console.log("[Eq] v1: " + v1 + ", v2: " + v2);
             return v1 == v2;
         });
     }
@@ -133,7 +132,10 @@ export class Server
             if (proposal_id)
             {
                 this.postgres.q6_query(proposal_id)
-                    .then((result) => render_index(res, { q6_query: true, result, body: req.body }))
+                    .then((result) => {
+                        console.log("[q6_query] Result: " + result);
+                        render_index(res, { q6_query: true, result, body: req.body });
+                    })
                     .catch((error) => res.json({ error }));
             }
         });
