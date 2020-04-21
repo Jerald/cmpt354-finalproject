@@ -23,7 +23,7 @@
                 <label for="q1_date">Choose a date:</label>
                 <select name="q1_date" id="q1_date">
                     {{#each months}}
-                        <option value="{{this}}" {{#if (eq body.q1_date this)}}selected{{/if}}>{{this}}</option>
+                        <option value="{{this}}" {{#if (eq ../body.q1_date this)}}selected{{/if}}>{{this}}</option>
                     {{/each}}
                 </select>
                 <br>
@@ -44,7 +44,7 @@
                 <label for="q2_date">Choose a date:</label>
                 <select name="q2_date" id="q2_date">
                     {{#each months}}
-                        <option value="{{this}}" {{#if (eq body.q2_date this)}}selected{{/if}}>{{this}}</option>
+                        <option value="{{this}}" {{#if (eq ../body.q2_date this)}}selected{{/if}}>{{this}}</option>
                     {{/each}}
                 </select>
 
@@ -53,7 +53,7 @@
                 <label for="q2_area">Select an area:</label>
                 <select name="q2_area" id="q2_area">
                     {{#each areas}}
-                        <option value="{{this}}" {{#if (eq body.q2_area this)}}selected{{/if}}>{{this}}</option>
+                        <option value="{{this}}" {{#if (eq ../body.q2_area this)}}selected{{/if}}>{{this}}</option>
                     {{/each}}
                 </select>
 
@@ -82,7 +82,7 @@
                 <label for="q3_area">Select an area:</label>
                 <select name="q3_area" id="q3_area">
                      {{#each areas}}
-                        <option value="{{this}}" {{#if (eq body.q3_area this)}}selected{{/if}}>{{this}}</option>
+                        <option value="{{this}}" {{#if (eq ../body.q3_area this)}}selected{{/if}}>{{this}}</option>
                     {{/each}}
                 </select>
 
@@ -124,7 +124,7 @@
                 <label for="q5_area">Select an area:</label>
                 <select name="q5_area" id="q5_area">
                     {{#each areas}}
-                        <option value="{{this}}" {{#if (eq body.q5_area this)}}selected{{/if}}>{{this}}</option>
+                        <option value="{{this}}" {{#if (eq ../body.q5_area this)}}selected{{/if}}>{{this}}</option>
                     {{/each}}
                 </select>
 

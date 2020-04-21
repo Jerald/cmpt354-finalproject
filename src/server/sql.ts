@@ -64,7 +64,7 @@ export class PostgresManager
 
     async q4(date: Date)
     {
-        let query = make_query(PostgresManager.q4_sql, [ date.getTime() ]);
+        let query = make_query(PostgresManager.q4_sql, [ (date.getTime() / 1000) ]);
         return this.client.query(query);
     }
 
