@@ -149,6 +149,17 @@ export class Server
                 let reviewers: number[] = body.q6_insert_reviewers;
 
                 console.log("Reviewers: " + JSON.stringify(reviewers));
+
+                let queries = [];
+                for (let i = 0; i < reviewers.length; i++)
+                {
+                    queries.push(this.postgres.q6_insert(proposal_id, reviewers[i]));
+                }
+
+                Promise.all(queries)
+                    .then((results) => {
+                        render_index(res, { q6_insert: true, body: req.body });
+                    })
             }
 
             render_index(res, {});
