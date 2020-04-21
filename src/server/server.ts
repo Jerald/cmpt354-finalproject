@@ -148,7 +148,7 @@ export class Server
                 let proposal_id: number = body.q6_proposal_id;
                 let reviewers: number[] = body.q6_insert_reviewers;
 
-                console.log("Reviewers: " + reviewers);
+                console.log("Reviewers: " + JSON.stringify(reviewers));
             }
 
             render_index(res, {});
