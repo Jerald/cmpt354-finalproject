@@ -19,27 +19,18 @@
                 IDs and the titles.
             </p>
 
-            <form action="/sql/q1" method="post">
+            <form action="/sql/q1" method="post" id="q1_form">
                 <label for="q1_date">Choose a date:</label>
                 <select name="q1_date" id="q1_date">
-                    <option value="January">January</option>
-                    <option value="February">February</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="August">August</option>
-                    <option value="September">September</option>
-                    <option value="October">October</option>
-                    <option value="November">November</option>
-                    <option value="December">December</option>
+                    {{#each months}}
+                        <option value="{{this}}" {{#if (eq ../body.q1_date this)}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
                 </select>
                 <br>
                 <input type="submit" value="Submit">
             </form>
-
-            <p id="q1_results"></p>
+            
+            {{#if q1}} <div id="q1_results">{{> result_table}}</div> {{/if}}
         </div>
 
         <div id="q2">
@@ -49,46 +40,35 @@
                 and chemistry) (s)he is interested in, and only displaying the competitions where the submitted large
                 proposals have principle investigators specified by the user.
             </p>
-            <form action="/sql/q2" method="post">
+            <form action="/sql/q2" method="post" id="q2_form">
                 <label for="q2_date">Choose a date:</label>
                 <select name="q2_date" id="q2_date">
-                    <option value="January">January</option>
-                    <option value="February">February</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="August">August</option>
-                    <option value="September">September</option>
-                    <option value="October">October</option>
-                    <option value="November">November</option>
-                    <option value="December">December</option>
+                    {{#each months}}
+                        <option value="{{this}}" {{#if (eq ../body.q2_date this)}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
                 </select>
 
                 <br>
 
                 <label for="q2_area">Select an area:</label>
                 <select name="q2_area" id="q2_area">
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Biology">Biology</option>
-                    <option value="Chemistry">Chemistry</option>
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Physics">Physics</option>
+                    {{#each areas}}
+                        <option value="{{this}}" {{#if (eq ../body.q2_area this)}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
                 </select>
 
                 <br>
 
                 <label for="q2_first_name">Enter a principle investigator name:</label>
-                <input type="text" name="q2_first_name" id="q2_first_name" placeholder="First name">
-                <input type="text" name="q2_last_name" id="q2_last_name" placeholder="Last name">
+                <input type="text" name="q2_first_name" id="q2_first_name" placeholder="First name" {{#with body.q2_first_name}}value="{{this}}"{{/with}}>
+                <input type="text" name="q2_last_name" id="q2_last_name" placeholder="Last name" {{#with body.q2_last_name}}value="{{this}}"{{/with}}>
 
                 <br>
 
                 <input type="submit" value="Submit">
             </form>
 
-            <p id="q2_results"></p>
+            {{#if q2}} <div id="q2_results">{{> result_table}}</div> {{/if}}
         </div>
 
         <div id="q3">
@@ -98,14 +78,12 @@
                 money.
             </p>
 
-            <form action="/sql/q3" method="post">
+            <form action="/sql/q3" method="post" id="q3_form">
                 <label for="q3_area">Select an area:</label>
                 <select name="q3_area" id="q3_area">
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Biology">Biology</option>
-                    <option value="Chemistry">Chemistry</option>
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Physics">Physics</option>
+                     {{#each areas}}
+                        <option value="{{this}}" {{#if (eq ../body.q3_area this)}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
                 </select>
 
                 <br>
@@ -113,7 +91,7 @@
                 <input type="submit" value="Submit">
             </form>
 
-            <p id="q3_results"></p>
+            {{#if q3}} <div id="q3_results">{{> result_table}}</div> {{/if}}
         </div>
 
         <div id="q4">
@@ -123,16 +101,16 @@
                 the largest amount of money.
             </p>
 
-            <form action="/sql/q4" method="post">
+            <form action="/sql/q4" method="post" id="q4_form">
                 <label for="q4_date">Choose a date:</label>
-                <input type="date" name="q4_date" id="q4_date">
+                <input type="date" name="q4_date" id="q4_date" {{#with body.q4_date}}value="{{this}}"{{/with}}>
 
                 <br>
 
                 <input type="submit" value="Submit">
             </form>
 
-            <p id="q4_results"></p>
+            {{#if q4}} <div id="q4_results">{{> result_table}}</div> {{/if}}
         </div>
 
         <div id="q5">
@@ -142,14 +120,12 @@
                 that is, the absolute value of the difference between the amounts.
             </p>
 
-            <form action="/sql/q5" method="post">
+            <form action="/sql/q5" method="post" id="q5_form">
                 <label for="q5_area">Select an area:</label>
                 <select name="q5_area" id="q5_area">
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Biology">Biology</option>
-                    <option value="Chemistry">Chemistry</option>
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Physics">Physics</option>
+                    {{#each areas}}
+                        <option value="{{this}}" {{#if (eq ../body.q5_area this)}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
                 </select>
 
                 <br>
@@ -157,7 +133,7 @@
                 <input type="submit" value="Submit">
             </form>
 
-            <p id="q5_results"></p>
+            {{#if q5}} <div id="q5_results">{{> result_table}}</div> {{/if}}
         </div>
 
         <div id="q6">
@@ -170,11 +146,23 @@
                 and who still have not reached the maximum of three proposals to review.
             </p>
 
-            <form action="/sql/q6" method="post">
+            <form action="/sql/q6_query" method="post" id="q6_query_form">
+                <label for="q6_proposal_id">Enter a proposal ID to see valid reviewers:</label>
+                <input type="number" name="q6_proposal_id" id="q6_proposal_id" placeholder="Proposal ID number" {{#with body.q6_proposal_id}}value="{{this}}"{{/with}}>
+
+                <br>
+
                 <input type="submit" value="Submit">
             </form>
 
-            <p id="q6_results"></p>
+            {{#if q6_query}}
+                <form action="/sql/q6_insert" method="post" id="q6_insert_form">
+                    {{> q6_insert_table}}
+                </form>
+            {{/if}}
+            {{#if q6_insert}}
+                <div><strong>Reviewers assigned!</strong></div>
+            {{/if}}
         </div>
 
         <div id="q7">
@@ -189,11 +177,11 @@
                 is scheduled to be in another room on the same day.
             </p>
 
-            <form action="/sql/q7" method="post">
+            <form action="/sql/q7" method="post" id="q7_form">
                 <input type="submit" value="Submit">
             </form>
 
-            <p id="q7_results"></p>
+            {{#if q7}} <div id="q7_results">{{> result_table}}</div> {{/if}}
         </div>
     </body>
 </html>

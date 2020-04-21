@@ -3,7 +3,7 @@
 WITH pg AS (
   SELECT p.id,p.awarded_amount
   FROM proposal p
-  WHERE to_timestamp($1, 'YYYY-MM-DD') > p.submission_date AND p.status = 'awarded'
+  WHERE to_timestamp($1) > p.submission_date AND p.status = 'awarded'
 )
 
 SELECT pg.id

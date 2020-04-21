@@ -1,0 +1,16 @@
+{{#if result}}
+<table>
+    <tr>
+        {{#each result.fields}}
+            <th>{{this.name}}</th>
+        {{/each}}
+    </tr>
+    {{#each result.rows}}
+        <tr>
+            {{#each this}}
+                <td>{{this}}</td>
+            {{/each}}
+        </tr>
+    {{/each}}
+</table>
+{{/if}}
