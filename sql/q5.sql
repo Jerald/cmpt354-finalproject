@@ -3,7 +3,7 @@
 -- $1: Area
 
 WITH pg AS(
-  SELECT p.id, ABS(p.request_amount - p.awarded_amount) AS discrepancy
+  SELECT ABS(p.request_amount - p.awarded_amount) AS discrepancy
   FROM proposal p JOIN grant_call g ON p.callid = g.id
   WHERE g.area = $1 AND p.awarded_amount >= 0.0
 
