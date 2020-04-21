@@ -6,7 +6,16 @@ import * as express from "express";
 import * as config from "./../config";
 import { PostgresManager, Month, Area } from "./sql";
 
-type QueryName = "q1" | "q2" | "q3" | "q4" | "q5" | "q6" | "q7";
+// type QueryName = "q1" | "q2" | "q3" | "q4" | "q5" | "q6" | "q7";
+
+function render_index(res: express.Response, locals: any): void
+{
+    let months: Month[] = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+
+    locals.months = months;
+
+    res.render("index", locals);
+}
 
 export class Server
 {
@@ -21,6 +30,7 @@ export class Server
         this.express.set("view engine", "hbs");
 
         hbs.registerPartials(config.VIEWS_DIR);
+        hbs.registerHelper("eq", (v1, v2) => v1 == v2);
     }
 
     start(): void
@@ -56,7 +66,7 @@ export class Server
             if (month && area && first_name && last_name)
             {
                 this.postgres.q2(month, area, first_name, last_name)
-                    .then((result) => res.render("index", { q2: true, result }))
+                    .then((result) => render_index(res, { q2: true, result, body: req.body }))
                     .catch((error) => res.json({ error }));
             }
             else
@@ -71,7 +81,7 @@ export class Server
             if (area)
             {
                 this.postgres.q3(area)
-                    .then((result) => res.render("index", { q3: true, result }))
+                    .then((result) => render_index(res, { q3: true, result, body: req.body }))
                     .catch((error) => res.json({ error }));
             }
             else
@@ -86,7 +96,7 @@ export class Server
             if (date)
             {
                 this.postgres.q4(date)
-                    .then((result) => res.render("index", { q4: true, result }))
+                    .then((result) => render_index(res, { q4: true, result, body: req.body }))
                     .catch((error) => res.json({ error }));
             }
             else
@@ -101,7 +111,7 @@ export class Server
             if (area)
             {
                 this.postgres.q5(area)
-                    .then((result) => res.render("index", { q5: true, result }))
+                    .then((result) => render_index(res, { q5: true, result, body: req.body }))
                     .catch((error) => res.json({ error }));
             }
             else

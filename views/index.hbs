@@ -22,18 +22,21 @@
             <form action="/sql/q1" method="post" id="q1_form">
                 <label for="q1_date">Choose a date:</label>
                 <select name="q1_date" id="q1_date">
-                    <option value="January">January</option>
-                    <option value="February">February</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="August">August</option>
-                    <option value="September">September</option>
-                    <option value="October">October</option>
-                    <option value="November">November</option>
-                    <option value="December">December</option>
+                    {{#each months}}
+                        <option value="{{this}}" {{#if (eq body.q1_date this)}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
+                    {{!-- <option value="January" {{#if (eq body.q1_date "January")}}selected{{/if}}>January</option>
+                    <option value="February" {{#if (eq body.q1_date "February")}}selected{{/if}}>February</option>
+                    <option value="March" {{#if (eq body.q1_date "March")}}selected{{/if}}>March</option>
+                    <option value="April" {{#if (eq body.q1_date "April")}}selected{{/if}}>April</option>
+                    <option value="May" {{#if (eq body.q1_date "May")}}selected{{/if}}>May</option>
+                    <option value="June" {{#if (eq body.q1_date "June")}}selected{{/if}}>June</option>
+                    <option value="July" {{#if (eq body.q1_date "July")}}selected{{/if}}>July</option>
+                    <option value="August" {{#if (eq body.q1_date "August")}}selected{{/if}}>August</option>
+                    <option value="September" {{#if (eq body.q1_date "September")}}selected{{/if}}>September</option>
+                    <option value="October" {{#if (eq body.q1_date "October")}}selected{{/if}}>October</option>
+                    <option value="November" {{#if (eq body.q1_date "November")}}selected{{/if}}>November</option>
+                    <option value="December" {{#if (eq body.q1_date "December")}}selected{{/if}}>December</option> --}}
                 </select>
                 <br>
                 <input type="submit" value="Submit">
@@ -52,7 +55,10 @@
             <form action="/sql/q2" method="post" id="q2_form">
                 <label for="q2_date">Choose a date:</label>
                 <select name="q2_date" id="q2_date">
-                    <option value="January">January</option>
+                    {{#each months}}
+                        <option value="{{this}}" {{#if (eq body.q2_date this)}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
+                    {{!-- <option value="January">January</option>
                     <option value="February">February</option>
                     <option value="March">March</option>
                     <option value="April">April</option>
@@ -63,7 +69,7 @@
                     <option value="September">September</option>
                     <option value="October">October</option>
                     <option value="November">November</option>
-                    <option value="December">December</option>
+                    <option value="December">December</option> --}}
                 </select>
 
                 <br>
