@@ -1,0 +1,201 @@
+id,firstname,lastname,email,organization
+1,Susantha,Gomis,gomis@muon.ca,Memorial University of Newfoundland
+2,Jennifer,Murphy,murphy@edts.ca,École de technologie supérieure
+3,François,Blanchard,blanchard@uow.ca,University of Waterloo
+4,Glenn,Heppler,heppler@uog.ca,University of Guelph
+5,Devin,Hymers,hymers@uow.ca,University of Waterloo
+6,Matthew,Li,li@mu.ca,McGill University
+7,Charles,Gale,gale@uooiot.ca,University of Ontario Institute of Technology
+8,Daniel,AbdelMalek,abdelmalek@uoa.ca,University of Alberta
+9,Pedram,Mousavi,mousavi@bu.ca,Brock University
+10,Georgii,Nikonov,nikonov@uoa.ca,University of Alberta
+11,Nicole,Martinek,martinek@uom.ca,University of Manitoba
+12,Heather,Stefaniuk,stefaniuk@pu.ca,Princeton University
+13,Tess,Grainger,grainger@uom.ca,University of Manitoba
+14,Tyson,Reimer,reimer@uoa.ca,University of Alberta
+15,Yaozhong,Hu,hu@uobc.ca,University of British Columbia
+16,Malcolm,Scoble,scoble@rmiot.ca,Royal Melbourne Institute of Technology
+17,Michael,Benoit,benoit@mu.ca,McMaster University
+18,Rong,Zheng,zheng@uov.ca,University of Victoria
+19,Keivan,Ahmadi,ahmadi@uoc.ca,University of Calgary
+20,Viola,Birss,birss@udm.ca,Université de Montréal
+21,Aaron,Courville,courville@wa.ca,Wilson Analytical
+22,Jiyoung,Yoon,yoon@uow.ca,University of Waterloo
+23,Samer,AlKiswany,alkiswany@uowo.ca,University of Western Ontario
+24,Mathushan,Subasri,subasri@uow.ca,University of Waterloo
+25,Cliff,Butcher,butcher@uot.ca,University of Toronto
+26,Shahrokh,Valaee,valaee@uobc.ca,University of British Columbia
+27,Navin,Ramankutty,ramankutty@uoa.ca,University of Alberta
+28,Mark,Lewis,lewis@uobc.ca,University of British Columbia
+29,Madjid,Mohseni,mohseni@uoa.ca,University of Alberta
+30,Elizabeth,Porter,porter@sfu.ca,Simon Fraser University
+31,Amanda,Woodhall,woodhall@qu.ca,Queen's University
+32,Jameson,Rokeby,rokeby@uoc-b.ca,University of California - Berkeley
+33,Ritvik,Ramkumar,ramkumar@mu.ca,McMaster University
+34,Eduard,Reinhardt,reinhardt@uom.ca,University of Manitoba
+35,Michael,Jackson,jackson@ac.ca,Aurora College
+36,Joel,McAlister,mcalister@uot.ca,University of Toronto
+37,Martin,Krkosek,krkosek@uobc.ca,University of British Columbia
+38,Jacob,Denson,denson@uowo.ca,University of Western Ontario
+39,Karam,Albakri,albakri@uoa.ca,University of Alberta
+40,Lauren,Huybregts,huybregts@uot.ca,University of Toronto
+41,Jack,Bufton,bufton@uobc.ca,University of British Columbia
+42,YaeinAmy,Shim,shim@uobc.ca,University of British Columbia
+43,Dana,Grecov,grecov@uot.ca,University of Toronto
+44,Florian,Herzig,herzig@edts.ca,École de technologie supérieure
+45,Ilian,Bonev,bonev@udm.ca,Université de Montréal
+46,Santiago,Costantino,costantino@mu.ca,McMaster University
+47,BrewsterAmory,Conant,conant@au.ca,Acadia University
+48,Hugh,Chipman,chipman@qu.ca,Queen's University
+49,Lawrence,Widrow,widrow@dt.ca,DIREXYON Technologies
+50,Thomas,Hillyer,hillyer@iei.ca,Index Exchange Inc.
+51,Albert,Kragl,kragl@uor.ca,University of Regina
+52,Shelby,Piechotta,piechotta@udqam.ca,Université du Québec à Montréal
+53,Isabelle,Marcotte,marcotte@lu.ca,Lakehead University
+54,Mohammad,Uddin,uddin@uot.ca,University of Toronto
+55,Mireille,Broucke,broucke@sftaoys.ca,Society for the  Advancement of Young Scientists
+56,Gerald,Poulton,poulton@uot.ca,University of Toronto
+57,Luc,DeNil,denil@uoa.ca,University of Alberta
+58,JeremiahJames,Kennedy,kennedy@mu.ca,McGill University
+59,Mathieu,Brochu,brochu@yu.ca,York University
+60,Hongmei,Zhu,zhu@nbcc.ca,New Brunswick Community College
+61,"Jr,William",McIver,mciver@uow.ca,University of Washington
+62,Lucy,Gao,gao@uot.ca,University of Toronto
+63,Oya,Mercan,mercan@cdl.ca,Cégep de l'Abitibi-Témiscamingue
+64,Sara,Magdouli,magdouli@udqam.ca,Université du Québec à Montréal
+65,Léonie,Perrier,perrier@uov.ca,University of Victoria
+66,Martin,Boulanger,boulanger@uoo.ca,University of Ottawa
+67,Scott,Williamson,williamson@n.ca,Novabus
+68,CheukFai,Shum,shum@nu.ca,Northeastern University
+69,Saba,AlimadadiJani,alimadadijani@uosa.ca,University of St Andrews
+70,Simon,Sharples,sharples@uos.ca,University of Saskatchewan
+71,ORHAN,YILMAZ,yilmaz@ltl.ca,LuminUltra Technologies Ltd
+72,Tristan,Fahie,fahie@uov.ca,University of Victoria
+73,JJ,Kavelaars,kavelaars@gi.ca,Genetec Inc.
+74,Michael,Seth,seth@ai.ca,Arkalumen Inc.
+75,Bradley,Reid,reid@epsc.ca,Evident Point Software Corp.
+76,Jueqi,Wang,wang@uov.ca,University of Victoria
+77,Adam,Paul,paul@udqac.ca,Université du Québec à Chicoutimi
+78,Milla,Rautio,rautio@uow.ca,University of Waterloo
+79,Jaume,Gomis,gomis@uoa.ca,University of Alberta
+80,Moritz,Heimpel,heimpel@yu.ca,York University
+81,Aleksander,Czekanski,czekanski@uom.ca,University of Manitoba
+82,Youstina,Soliman,soliman@mu.ca,McGill University
+83,stephen,yue,yue@uobc.ca,University of British Columbia
+84,SeyedAli,GhoreishiMadiseh,ghoreishimadiseh@uom.ca,University of Manitoba
+85,Miroslaw,Pawlak,pawlak@du.ca,Dalhousie University
+86,Ahmed,Saif,saif@cpec.ca,Crescent Point Energy Corp.
+87,Matthew,Corbiell,corbiell@uot.ca,University of Toronto
+88,Glenn,Hibbard,hibbard@uow.ca,University of Waterloo
+89,Pavle,Radovanovic,radovanovic@uow.ca,University of Waterloo
+90,Nicholas,Preston,preston@mu.ca,McMaster University
+91,Nicholas,Bock,bock@spi.ca,SignalChem Pharmaceuticals Inc
+92,MichelleYoonsuh,Sung,sung@uoa.ca,University of Alberta
+93,Simaan,AbouRizk,abourizk@uow.ca,University of Waterloo
+94,Fiodar,Kazhamiaka,kazhamiaka@uot.ca,University of Toronto
+95,Kayman,Brusse,brusse@r.ca,Resverlogix
+96,Emma,Stanley,stanley@uot.ca,University of Toronto
+97,YoungJune,Kim,kim@mu.ca,McGill University
+98,Miranda,Hunter,hunter@uot.ca,University of Toronto
+99,Morris,Moscovitch,moscovitch@uow.ca,University of Waterloo
+100,Baris,Fidan,fidan@uog.ca,University of Guelph
+101,Elena,Choleris,choleris@uot.ca,University of Toronto
+102,SeyedMasih,AlavyGhahfarrokhy,alavyghahfarrokhy@uds.ca,Université de Sherbrooke
+103,Froduald,Kabanza,kabanza@mu.ca,McGill University
+104,Victoria,Kaspi,kaspi@uoo.ca,University of Ottawa
+105,Leonard,Maler,maler@uol.ca,University of Lethbridge
+106,Samuel,Broadbent,broadbent@uds.ca,Université de Sherbrooke
+107,François,Michaud,michaud@ic.ca,Isowater Corporation
+108,Erick,Dykstra,dykstra@udm.ca,Université de Montréal
+109,PierreLuc,Chagnon,chagnon@uos.ca,University of Saskatchewan
+110,Takuji,Tanaka,tanaka@uog.ca,University of Guelph
+111,Aicheng,Chen,chen@uom.ca,University of Manitoba
+112,Ryan,Galley,galley@qu.ca,Queen's University
+113,WilliamAndrew,Take,take@mu.ca,McMaster University
+114,Adrian,Kitai,kitai@uoa.ca,University of Alberta
+115,Todd,Lowary,lowary@uoa.ca,University of Alberta
+116,Johnson,Tang,tang@uot.ca,University of Toronto
+117,Robert,Les,les@cu.ca,Concordia University
+118,Navneet,Vidyarthi,vidyarthi@uos.ca,University of Saskatchewan
+119,Jens,Mueller,mueller@uos.ca,University of Saskatchewan
+120,Chun,Yang,yang@uot.ca,University of Toronto
+121,Ali,Hooshyar,hooshyar@udqea.ca,Université du Québec en Abitibi-Témiscamingue
+122,Bruno,Bussière,bussiere@udqar.ca,Université du Québec à Rimouski
+123,MartinHugues,StLaurent,stlaurent@uonb.ca,University of New Brunswick
+124,Bonnie,Sim,sim@du.ca,Dalhousie University
+125,Rebecca,Tobin,tobin@mp.ca,Mitchell Plastics
+126,Kyle,Rath,rath@uobc.ca,University of British Columbia
+127,Davide,Elmo,elmo@udm.ca,Université de Montréal
+128,Sarah,Lippé,lippe@epdm.ca,École Polytechnique de Montréal
+129,Manuele,Margni,margni@mu.ca,McGill University
+130,Weiwei,Liu,liu@uoo.ca,University of Oslo
+131,Arianne,PetleyRagan,petleyragan@kbc.ca,Kinexus Bioinformatics Corporation
+132,Ashley,Perron,perron@mu.ca,McGill University
+133,Lisa,Stephens,stephens@uov.ca,University of Victoria
+134,Hausi,Muller,muller@mu.ca,McMaster University
+135,Sorina,Dumitrescu,dumitrescu@edts.ca,École de technologie supérieure
+136,Louis,Lamarche,lamarche@au.ca,Acadia University
+137,Adam,Discher,discher@uobc.ca,University of British Columbia
+138,Ann,Rose,rose@uot.ca,University of Toronto
+139,Shahrokh,Valaee,valaee@uowo.ca,University of Western Ontario
+140,Sashko,Damjanovski,damjanovski@du.ca,Dalhousie University
+141,Prabir,Basu,basu@ul.ca,Université Laval
+142,Xavier,Dallaire,dallaire@uoa.ca,University of Alberta
+143,Toby,Spribille,spribille@iei.ca,Index Exchange Inc.
+144,Shakeel,Rao,rao@uoa.ca,University of Alberta
+145,Charles,Doran,doran@mu.ca,McGill University
+146,Reza,FarivarMohseni,farivarmohseni@uoo.ca,University of Ottawa
+147,Risa,Sargent,sargent@cu.ca,Concordia University
+148,Emad,Shihab,shihab@mu.ca,McGill University
+149,Henrietta,Galiana,galiana@uoo.ca,University of Ottawa
+150,Catherine,CapkunHuot,capkunhuot@uom.ca,University of Manitoba
+151,Joseph,Gordon,gordon@uot.ca,University of Toronto
+152,Ayman,Dorrah,dorrah@sti.ca,SYNERGX Technologies Inc.
+153,Antoine,DionStGermain,dionstgermain@uds.ca,Université de Sherbrooke
+154,Daniel,Houde,houde@uov.ca,University of Victoria
+155,Neil,Ernst,ernst@uowo.ca,University of Western Ontario
+156,Sheila,Passos,passos@uoo.ca,University of Ottawa
+157,Paul,Corkum,corkum@uot.ca,University of Toronto
+158,Sacha,Ruzzante,ruzzante@mu.ca,McGill University
+159,Tamar,PeregBarnea,peregbarnea@uooiot.ca,University of Ontario Institute of Technology
+160,Akramul,Azim,azim@msvu.ca,Mount Saint Vincent University
+161,Erik,Vandenboer,vandenboer@ru.ca,Ryerson University
+162,Horace,Chan,chan@qu.ca,Queen's University
+163,Juergen,Dingel,dingel@bpsi.ca,Ballard Power Systems Inc.
+164,Kevin,Dahl,dahl@cm.ca,Collège Mérici
+165,Claude,Morin,morin@udm.ca,Université de Montréal
+166,Patrick,James,james@mu.ca,McGill University
+167,Frieder,Schoeck,schoeck@uow.ca,University of Waterloo
+168,Heather,Ikert,ikert@uoo.ca,University of Ottawa
+169,Christopher,Kinsley,kinsley@uot.ca,University of Toronto
+170,Rutsuko,Ito,ito@uow.ca,University of Waterloo
+171,Shai,BenDavid,bendavid@uobc.ca,University of British Columbia
+172,Gholamreza,Naser,naser@udm.ca,Université de Montréal
+173,Claudia,PicardDeland,picarddeland@ul.ca,Université Laval
+174,Crystal,LaFlamme,laflamme@uoiau.ca,University of Illinois at Urbana-Champaign
+175,Jeella,Acedo,acedo@uog.ca,University of Guelph
+176,Claudia,WagnerRiddle,wagnerriddle@epdm.ca,École Polytechnique de Montréal
+177,David,Lessard,lessard@uoa.ca,University of Alberta
+178,Timothy,Lee,lee@uobc.ca,University of British Columbia
+179,Jackson,Moore,moore@ru.ca,Ryerson University
+180,Costin,Antonescu,antonescu@udqac.ca,Université du Québec à Chicoutimi
+181,XGrant,Chen,chen@uot.ca,University of Toronto
+182,Colin,McCarter,mccarter@udm.ca,Université de Montréal
+183,Guillaume,Lajoie,lajoie@epdm.ca,École Polytechnique de Montréal
+184,Sarah,Dorner,dorner@uow.ca,University of Waterloo
+185,Alfred,Yu,yu@cs.ca,Collège Shawinigan
+186,Lucie,Hamel,hamel@udm.ca,Université de Montréal
+187,Christine,Theoret,theoret@du.ca,Dalhousie University
+188,Jillian,Clark,clark@uot.ca,University of Toronto
+189,Pamela,Tetford,tetford@uow.ca,University of Waterloo
+190,Brian,Ingalls,ingalls@cu.ca,Concordia University
+191,Yves,Gelinas,gelinas@mu.ca,McGill University
+192,Gary,Scavone,scavone@gbcoaaat.ca,George Brown College of Applied Arts and Technology
+193,Dawn,Davidson,davidson@ul.ca,Université Laval
+194,MariePier,Tremblay,tremblay@uog.ca,University of Guelph
+195,Jacqueline,Lavery,lavery@uot.ca,University of Toronto
+196,Alexander,Nabutovsky,nabutovsky@mu.ca,McMaster University
+197,Nathan,Bullen,bullen@indlrs.ca,Institut national de la recherche scientifique
+198,Alexandra,Gobeil,gobeil@8ci.ca,8996598 Canada Inc.
+199,Andrew,Bright,bright@luos.ca,Laurentian University of Sudbury
+200,Michael,Schindler,schindler@lu.ca,Lakehead University
