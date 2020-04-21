@@ -42,7 +42,7 @@ export class Server
         this.express.use(express.static(config.SERVE_DIR));
 
         this.express.get("/", (req, res) => {
-            res.render("index");
+            render_index(res, {});
         });
 
         this.express.post("/sql/q1", (req, res) => {
