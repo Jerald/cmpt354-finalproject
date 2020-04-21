@@ -133,7 +133,7 @@ export class Server
             {
                 this.postgres.q6_query(proposal_id)
                     .then((result) => {
-                        console.log("[q6_query] Result: " + result);
+                        console.log("[q6_query] Result: " + JSON.stringify(result));
                         render_index(res, { q6_query: true, result, body: req.body });
                     })
                     .catch((error) => res.json({ error }));
