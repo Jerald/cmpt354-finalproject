@@ -197,7 +197,7 @@ export class Server
         this.express.post("/sql/q7_schedule_check", (req, res) => {
             if (req.body)
             {
-                let date: Date = req.body.q7_date;
+                let date: Date = new Date(req.body.q7_date);
                 let calls: number[] = req.body.q7_schedule_calls;
 
                 this.postgres.q7_schedule_check(date, [ calls[0], calls[1], calls[2] ])
