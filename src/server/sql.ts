@@ -99,7 +99,7 @@ export class PostgresManager
 
     async q7_schedule_check(date: Date, calls: [number, number, number])
     {
-        let query = make_query(PostgresManager.q7_schedule_check_sql, [ (date.getTime()/1000), calls[0], calls[1], calls[2] ])
+        let query = make_query(PostgresManager.q7_schedule_check_sql, [ (date.getTime()/1000), calls[0], calls[1], calls[2] ]);
         return this.client.query(query);
     }
 }

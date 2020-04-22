@@ -186,7 +186,11 @@ export class Server
                         let status = result.rowCount == 0;
                         render_index(res, { q7_room_check: status, result, body: req.body, q7_error_room_availability: !status });
                     })
-                    .catch((error) => res.json({ error }))
+                    .catch((error) => res.json({ text: "This is the q7 room check error", error }));
+            }
+            else
+            {
+                res.json({ error: "Room or date was undefined!"});
             }
         });
 
