@@ -25,6 +25,7 @@ async function main(): Promise<void>
     catch (error)
     {
         console.log(`[Main] Client connection error: ${error}`);
+        throw "CONNECTION FAILURE";
     }
 }
 
