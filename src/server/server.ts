@@ -47,7 +47,7 @@ export class Server
     start(): void
     {
         this.express.use(express.json());
-        this.express.use(express.urlencoded());
+        this.express.use(express.urlencoded({ extended: true }));
         this.express.use(express.static(config.SERVE_DIR));
 
         this.express.get("/", (req, res) => {
