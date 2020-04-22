@@ -230,6 +230,7 @@ export class Server
             if (calls[0] == "" || calls[1] == "" || calls[2] == "" || calls.length != 3)
             {
                 render_index(res, { q7_room_check: true, q7_error_incorrect_num_calls: true, body: req.body });
+                return;
             }
 
             console.log("[q7] Calls: '" + JSON.stringify(calls) + "'");
@@ -258,6 +259,7 @@ export class Server
             if (calls[0] == "" || calls[1] == "" || calls[2] == "" || calls.length != 3)
             {
                 render_index(res, { q7_error_incorrect_num_calls: true, body: req.body });
+                return;
             }
 
             let date: Date = new Date(req.body?.q7_date);
