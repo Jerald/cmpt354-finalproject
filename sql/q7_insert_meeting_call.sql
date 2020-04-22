@@ -6,5 +6,5 @@
 -- $3 - grant call ID
 
 INSERT INTO meeting_calls (calls, meet_date, meet_loc)
-VALUES ($3, $1, $2);
+VALUES ($3, to_timestamp($1), $2);
 

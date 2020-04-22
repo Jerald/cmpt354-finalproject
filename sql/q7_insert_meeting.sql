@@ -5,4 +5,4 @@
 -- $2 - room location
 
 INSERT INTO meeting (scheduled, location)
-VALUES ($1, $2);
+VALUES (to_timestamp($1), $2);
