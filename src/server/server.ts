@@ -59,12 +59,15 @@ export class Server
 
             if (month == undefined)
             {
-                res.json({ error: "No date supplied!" });
+                render_index(res, { q1_error_input: true, body: req.body })
                 return;
             }
 
             this.postgres.q1(month)
-                .then((result) => render_index(res, { q1: true, result, body: req.body }))
+                .then((result) => {
+                    let status = result.rowCount != 0;
+                    render_index(res, { q1: status, result, body: req.body, q1_error_no_results: !status });
+                })
                 .catch((error) => res.json({ error }));
         });
 
@@ -77,12 +80,15 @@ export class Server
             if (month && area && first_name && last_name)
             {
                 this.postgres.q2(month, area, first_name, last_name)
-                    .then((result) => render_index(res, { q2: true, result, body: req.body }))
+                    .then((result) => {
+                        let status = result.rowCount != 0;
+                        render_index(res, { q2: status, result, body: req.body, q2_error_no_results: !status });
+                    })
                     .catch((error) => res.json({ error }));
             }
             else
             {
-                res.json({ error: "One of the inputs was undefined!" });
+                render_index(res, { q2_error_input: true, body: req.body });
             }
         });
 
@@ -92,28 +98,35 @@ export class Server
             if (area)
             {
                 this.postgres.q3(area)
-                    .then((result) => render_index(res, { q3: true, result, body: req.body }))
+                    .then((result) => {
+                        let status = result.rowCount != 0;
+                        render_index(res, { q3: status, result, body: req.body, q3_error_no_results: !status });
+                    })
                     .catch((error) => res.json({ error }));
             }
             else
             {
-                res.json({ error: "Area was undefined!" });
+                render_index(res, { q3_error_input: true, body: req.body });
             }
         });
 
         this.express.post("/sql/q4", (req, res) => {
-            let date: Date | undefined = new Date(req.body?.q4_date);
+            let raw_date: string | undefined = req.body?.q4_date;
 
-            if (date)
+            if (raw_date == undefined || raw_date == "")
             {
-                this.postgres.q4(date)
-                    .then((result) => render_index(res, { q4: true, result, body: req.body }))
-                    .catch((error) => res.json({ error }));
+                render_index(res, { q4_error_input: true, body: req.body });
+                return;
             }
-            else
-            {
-                res.json({ error: "Date was undefined!" });
-            }
+
+            let date: Date = new Date(raw_date);
+
+            this.postgres.q4(date)
+                .then((result) => {
+                    let status = result.rowCount != 0;
+                    render_index(res, { q4: status, result, body: req.body, q4_error_no_results: !status });
+                })
+                .catch((error) => res.json({ error }));
         });
 
         this.express.post("/sql/q5", (req, res) => {
@@ -122,12 +135,15 @@ export class Server
             if (area)
             {
                 this.postgres.q5(area)
-                    .then((result) => render_index(res, { q5: true, result, body: req.body }))
+                    .then((result) => {
+                        let status = result.rowCount != 0;
+                        render_index(res, { q5: status, result, body: req.body, q5_error_no_results: !status });
+                    })
                     .catch((error) => res.json({ error }));
             }
             else
             {
-                res.json({ error: "Area was undefined!" });
+                render_index(res, { q5_error_input: true, body: req.body });
             }
         });
 
@@ -138,26 +154,31 @@ export class Server
             {
                 this.postgres.q6_query(proposal_id)
                     .then((result) => {
-                        console.log("[q6_query] Result: " + JSON.stringify(result));
-                        render_index(res, { q6_query: true, result, body: req.body });
+                        let status = result.rowCount != 0;
+                        render_index(res, { q6_query: status, result, body: req.body, q6_error_reviewers_unavailable: !status });
                     })
                     .catch((error) => res.json({ error }));
             }
             else
             {
-                res.json({ error: "Proposal ID was undefined!" });
+                render_index(res, { q6_error_input: true, body: req.body });
             }
         });
 
         this.express.post("/sql/q6_insert", (req, res) => {
-            let body: any | undefined = req.body;
+            let proposal_id: number | undefined = req.body?.q6_proposal_id;
+            let reviewers: number[] | undefined = req.body?.q6_insert_reviewers;
 
-            if (body)
+            if (reviewers == undefined || reviewers.length == 0)
             {
-                let proposal_id: number = body.q6_proposal_id;
-                let reviewers: number[] = body.q6_insert_reviewers;
+                render_index(res, { q6_error_no_reviewers_selected: true, body: req.body });
+                return
+            }
 
+            if (proposal_id && reviewers)
+            {
                 console.log("Reviewers: " + JSON.stringify(reviewers));
+
 
                 let queries = [];
                 for (let i = 0; i < reviewers.length; i++)
@@ -171,46 +192,86 @@ export class Server
             }
             else
             {
-                res.json({ error: "Body was undefined!" });
+                render_index(res, { q6_error_input: true, body: req.body });
             }
         });
 
         this.express.post("/sql/q7_room_check", (req, res) => {
             let room: string | undefined = req.body?.q7_room_name;
-            let date: Date | undefined = new Date(req.body?.q7_date);
+            let raw_date: string | undefined = req.body?.q7_date;
 
-            if (room && date)
+            if (raw_date == undefined || raw_date == "" || room == undefined)
             {
-                this.postgres.q7_room_check(room, date)
-                    .then((result) => {
-                        let status = result.rowCount == 0;
-                        render_index(res, { q7_room_check: status, result, body: req.body, q7_error_room_availability: !status });
-                    })
-                    .catch((error) => res.json({ text: "This is the q7 room check error", error: JSON.stringify(error) }));
+                render_index(res, { q7_error_input: true, body: req.body });
+                return;
             }
-            else
-            {
-                res.json({ error: "Room or date was undefined!"});
-            }
+
+            let date: Date = new Date(raw_date);
+
+            this.postgres.q7_room_check(room, date)
+                .then((result) => {
+                    let status = result.rowCount == 0;
+                    render_index(res, { q7_room_check: status, result, body: req.body, q7_error_room_availability: !status });
+                })
+                .catch((error) => res.json({ text: "This is the q7 room check error", error: JSON.stringify(error) }));
         });
 
         this.express.post("/sql/q7_schedule_check", (req, res) => {
-            if (req.body)
+            let raw_date: string | undefined = req.body?.q7_date;
+            let room: string | undefined = req.body?.q7_room_name;
+            let calls: any[] | undefined = req.body?.q7_schedule_calls;
+            
+            if (raw_date == undefined || raw_date == "" || room == undefined || calls == undefined)
             {
-                let date: Date = new Date(req.body.q7_date);
-                let calls: number[] = req.body.q7_schedule_calls;
+                render_index(res, { q7_error_input: true, body: req.body });
+                return;
+            }
 
-                this.postgres.q7_schedule_check(date, [ calls[0], calls[1], calls[2] ])
-                    .then((result) => {
-                        let status = result.rowCount == 0;
-                        render_index(res, { q7_schedule_check: status, q7_room_check: true, body: req.body, q7_error_schedule: !status})
-                    })
-                    .catch((error) => res.json({ error }));
-            }
-            else
+            if (calls[0] == "" || calls[1] == "" || calls[2] == "" || calls.length != 3)
             {
-                res.json({ error: "Body was undefined!" });
+                render_index(res, { q7_room_check: true, q7_error_incorrect_num_calls: true, body: req.body });
             }
+
+            console.log("[q7] Calls: '" + JSON.stringify(calls) + "'");
+
+            let date: Date = new Date(req.body?.q7_date);
+
+            this.postgres.q7_schedule_check(date, [ calls[0], calls[1], calls[2] ])
+                .then((result) => {
+                    let status = result.rowCount == 0;
+                    render_index(res, { q7_schedule_check: status, q7_room_check: true, body: req.body, q7_error_schedule: !status});
+                })
+                .catch((error) => res.json({ error }));
+        });
+
+        this.express.post("/sql/q7_insert", (req, res) => {
+            let raw_date: string | undefined = req.body?.q7_date;
+            let room: string | undefined = req.body?.q7_room_name;
+            let calls: any[] | undefined = req.body?.q7_schedule_calls;
+            
+            if (raw_date == undefined || raw_date == "" || room == undefined || calls == undefined)
+            {
+                render_index(res, { q7_error_input: true, body: req.body });
+                return;
+            }
+
+            if (calls[0] == "" || calls[1] == "" || calls[2] == "" || calls.length != 3)
+            {
+                render_index(res, { q7_error_incorrect_num_calls: true, body: req.body });
+            }
+
+            let date: Date = new Date(req.body?.q7_date);
+
+            let queries = [];
+
+            queries.push(this.postgres.q7_insert_meeting(room, date));
+            queries.push(this.postgres.q7_insert_meeting_call(room, date, calls[0]));
+            queries.push(this.postgres.q7_insert_meeting_call(room, date, calls[1]));
+            queries.push(this.postgres.q7_insert_meeting_call(room, date, calls[2]));
+
+            Promise.all(queries)
+                .then((results) => render_index(res, { q7_insert: true, body: req.body }))
+                .catch((error) => res.json({ error }));
         });
         
         this.express.post("/sql_submit", (req, res) => {

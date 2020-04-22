@@ -1,10 +1,6 @@
 {{#if result}}
 
-<label for="q6_proposal_id">Queried proposal id: </label>
-<input readonly type="number" name="q6_proposal_id" value="{{body.q6_proposal_id}}">
-
-{{!-- <label for="q6_reviewers_length">Number of reviewers found: </label>
-<input readonly type="number" name="q6_reviewers_length" value="{{q6.reviewers_length}}"> --}}
+<input type="hidden" name="q6_proposal_id" value="{{body.q6_proposal_id}}">
 
 <table>
     <tr>
