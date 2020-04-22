@@ -253,6 +253,11 @@ export class Server
                 return;
             }
 
+            if (calls.length != 3)
+            {
+                render_index(res, { q7_error_incorrect_num_calls: true, body: req.body });
+            }
+
             let date: Date = new Date(req.body?.q7_date);
 
             let queries = [];
