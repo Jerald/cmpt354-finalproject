@@ -9,5 +9,4 @@
 
 SELECT COUNT(*)
 FROM meeting M
-WHERE M.location = $1;
--- WHERE M.location = $1 AND M.scheduled = to_timestamp($2);
+WHERE M.location = $1 AND M.scheduled = to_timestamp($2);
