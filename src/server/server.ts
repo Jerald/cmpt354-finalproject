@@ -195,21 +195,39 @@ export class Server
         });
 
         this.express.post("/sql/q7_schedule_check", (req, res) => {
-            if (req.body)
-            {
-                let date: Date = new Date(req.body.q7_date);
-                let calls: number[] = req.body.q7_schedule_calls;
+            let date: Date | undefined = new Date(req.body?.q7_date);
+            let room: string | undefined = req.body?.q7_room_name;
+            let calls: number[] | undefined = req.body?.q7_schedule_calls;
 
+            if (date && room && calls)
+            {
                 this.postgres.q7_schedule_check(date, [ calls[0], calls[1], calls[2] ])
                     .then((result) => {
                         let status = result.rowCount == 0;
-                        render_index(res, { q7_schedule_check: status, q7_room_check: true, body: req.body, q7_error_schedule: !status})
+                        render_index(res, { q7_schedule_check: status, q7_room_check: true, body: req.body, q7_error_schedule: !status});
                     })
                     .catch((error) => res.json({ error }));
             }
             else
             {
-                res.json({ error: "Body was undefined!" });
+                res.json({ error: "Date, room, or calls was undefined!" });
+            }
+        });
+
+        this.express.post("/sql/q7_insert", (req, res) => {
+            let date: Date | undefined = new Date(req.body?.q7_date);
+            let room: string | undefined = req.body?.q7_room_name;
+            let calls: number[] | undefined = req.body?.q7_schedule_calls;
+
+            if (date && room && calls)
+            {
+                this.postgres.q7_insert(room, date, [ calls[0], calls[1], calls[2] ])
+                    .then((result) => render_index(res, { q7_insert: true, body: req.body }))
+                    .catch((error) => res.json({ error }));
+            }
+            else
+            {
+                res.json({ error: "Date, room, or calls was undefined!"});
             }
         });
         

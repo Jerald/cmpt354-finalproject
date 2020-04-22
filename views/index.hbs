@@ -199,11 +199,25 @@
                     <input type="submit" value="Submit">
 
                     <input type="hidden" name="q7_date" value="{{body.q7_date}}">
+                    <input type="hidden" name="q7_room_name" value="{{body.q7_room_name}}">
                 </form>
                 {{!-- <div id="q7_results">{{> result_table}}</div> --}}
             {{/if}}
 
             {{#if q7_schedule_check}}
+                <form action="/sql/q7_insert" method="post">
+                    <label for="q7_insert_submit">Schedule is valid. Would you like to schedule it?</label>
+                    <input type="submit" value="Yes, schedule the meeting" name="q7_insert_submit" id="q7_insert_submit">
+
+                    <input type="hidden" name="q7_date" value="{{body.q7_date}}">
+                    <input type="hidden" name="q7_room_name" value="{{body.q7_room_name}}">
+                    <input type="hidden" name="q7_schedule_calls[]" value="{{index body.q7_schedule_calls 0}}">
+                    <input type="hidden" name="q7_schedule_calls[]" value="{{index body.q7_schedule_calls 1}}">
+                    <input type="hidden" name="q7_schedule_calls[]" value="{{index body.q7_schedule_calls 2}}">
+                </form>
+            {{/if}}
+
+            {{#if q7_insert}}
                 <div><strong>Calls scheduled successfully.</strong></div>
             {{/if}}
 

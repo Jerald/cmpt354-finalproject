@@ -102,6 +102,12 @@ export class PostgresManager
         let query = make_query(PostgresManager.q7_schedule_check_sql, [ (date.getTime()/1000), calls[0], calls[1], calls[2] ]);
         return this.client.query(query);
     }
+
+    async q7_insert(room: string, date: Date, calls: [number, number, number])
+    {
+        let query = make_query(PostgresManager.q7_insert_sql, [ (date.getTime()/1000), room, calls[0], calls[1], calls[2] ]);
+        return this.client.query(query);
+    }
 }
 
 (function ()
