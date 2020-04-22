@@ -148,7 +148,7 @@
 
             <form action="/sql/q6_query" method="post" id="q6_query_form">
                 <label for="q6_proposal_id">Enter a proposal ID to see valid reviewers:</label>
-                <input type="number" name="q6_proposal_id" id="q6_proposal_id" placeholder="Proposal ID number" {{#with body.q6_proposal_id}}value="{{this}}"{{/with}}>
+                <input type="number" name="q6_proposal_id" id="q6_proposal_id" placeholder="Proposal ID number" {{#with body.q6_proposal_id}} value="{{this}}" {{/with}}>
 
                 <br>
 
@@ -177,11 +177,45 @@
                 is scheduled to be in another room on the same day.
             </p>
 
-            <form action="/sql/q7" method="post" id="q7_form">
+            <form action="/sql/q7_room_check" method="post" id="q7_room_check_form">
+                <label for="q7_room_name">Enter room name to check:</label>
+                <input type="text" name="q7_room_name" id="q7_room_name" {{#with body.q7_room_name}} value="{{this}}" {{/with}}>
+                <br>
+                <label for="q7_date">Enter date to check:</label>
+                <input type="date" name="q7_date" id="q7_date" {{#with body.q7_date}} value="{{this}}" {{/with}}>
+                <br>
                 <input type="submit" value="Submit">
             </form>
 
-            {{#if q7}} <div id="q7_results">{{> result_table}}</div> {{/if}}
+            {{#if q7_room_check}}
+                <div>Enter the 3 call ids to schedule:</div>
+                <form action="/sql/q7_schedule_check" method="post">
+                    <input type="number" name="q7_schedule_calls[]" id="q7_schedule_call1" {{#with body.q7_schedule_calls}} value="{{index this 0}}" {{/with}}>
+                    <br>
+                    <input type="number" name="q7_schedule_calls[]" id="q7_schedule_call2" {{#with body.q7_schedule_calls}} value="{{index this 1}}" {{/with}}>
+                    <br>
+                    <input type="number" name="q7_schedule_calls[]" id="q7_schedule_call3" {{#with body.q7_schedule_calls}} value="{{index this 2}}" {{/with}}>
+                    <br>
+                    <input type="submit" value="Submit">
+
+                    <input type="hidden" name="q7_date" value="{{body.q7_date}}">
+                </form>
+                {{!-- <div id="q7_results">{{> result_table}}</div> --}}
+            {{/if}}
+
+            {{#if q7_schedule_check}}
+                <div><strong>Calls scheduled successfully.</strong></div>
+            {{/if}}
+
+            {{#if q7_error_room_availability}}
+                <div><strong>Room is not available on that day.</strong></div>
+            {{/if}}
+
+            {{#if q7_error_schedule}}
+                <div><strong>Schedule not possible. Some reviewers unavailable.</strong></div>
+            {{/if}}
+
+
         </div>
     </body>
 </html>

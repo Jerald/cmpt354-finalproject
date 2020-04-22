@@ -1,8 +1,7 @@
-WITH D AS (
-  SELECT G.deadline + integer '14' AS deadline
-  FROM proposal P JOIN grant_call G ON P.callid = G.id
-  WHERE P.proposalid = $1
-)
+-- $1: Proposal id
+-- $2: Reviewer id
 
 INSERT INTO review (reviewerid, proposalid, deadline)
-VALUES ($2, $1, D);
+    SELECT $2, $1, G.deadline + integer '14'
+    FROM proposal P JOIN grant_call G ON P.callid = G.id
+    WHERE P.id = $1;

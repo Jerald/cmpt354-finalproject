@@ -30,9 +30,13 @@ export class PostgresManager
     static q3_sql: string = "";
     static q4_sql: string = "";
     static q5_sql: string = "";
+
     static q6_query_sql: string = "";
     static q6_insert_sql: string = "";
-    static q7_sql: string = "";
+
+    static q7_room_check_sql: string = "";
+    static q7_schedule_check_sql: string = "";
+    static q7_insert_sql: string = "";
 
     readonly client: pg.Client;
 
@@ -86,11 +90,23 @@ export class PostgresManager
         let query = make_query(PostgresManager.q6_insert_sql, [ proposal_id, reviewer_id ]);
         return this.client.query(query);
     }
+
+    async q7_room_check(room: string, date: Date)
+    {
+        let query = make_query(PostgresManager.q7_room_check_sql, [ room, (date.getTime() / 1000) ]);
+        return this.client.query(query);
+    }
+
+    async q7_schedule_check(date: Date, calls: [number, number, number])
+    {
+        let query = make_query(PostgresManager.q7_schedule_check_sql, [ (date.getTime()/1000), calls[0], calls[1], calls[2] ]);
+        return this.client.query(query);
+    }
 }
 
 (function ()
 {
-    type Prop = "q1_sql" | "q2_sql" | "q3_sql" | "q4_sql" | "q5_sql" | "q6_query_sql" | "q6_insert_sql" | "q7_sql";
+    type Prop = "q1_sql" | "q2_sql" | "q3_sql" | "q4_sql" | "q5_sql" | "q6_query_sql" | "q6_insert_sql" | "q7_schedule_check_sql" | "q7_room_check_sql" | "q7_insert_sql";
     
     function loadSql(propName: Prop)
     {
@@ -110,6 +126,11 @@ export class PostgresManager
     loadSql("q3_sql");
     loadSql("q4_sql");
     loadSql("q5_sql");
+
     loadSql("q6_query_sql");
     loadSql("q6_insert_sql");
+
+    loadSql("q7_room_check_sql");
+    loadSql("q7_schedule_check_sql");
+    loadSql("q7_insert_sql");
 })()
