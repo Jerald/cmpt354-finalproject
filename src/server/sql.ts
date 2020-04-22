@@ -93,7 +93,7 @@ export class PostgresManager
 
     async q7_room_check(room: string, date: Date)
     {
-        console.log("[q7 sql] q7_room_check text: " + this.q7_room_check);
+        console.log("[q7 sql] q7_room_check text: " + PostgresManager.q7_room_check_sql);
         let query = make_query(PostgresManager.q7_room_check_sql, [ room, (date.getTime()/1000) ]);
         return this.client.query(query);
     }
