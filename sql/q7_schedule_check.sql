@@ -16,7 +16,7 @@
 -- $4: Call 3
 
 
-SELECT COUNT(*) FROM (
+SELECT * FROM (
     SELECT R.reviewerid
     FROM grant_call G
     JOIN proposal P ON G.id = P.callid   

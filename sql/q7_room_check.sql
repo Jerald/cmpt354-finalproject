@@ -7,6 +7,6 @@
 -- $1: Meeting location
 -- $2: Meeting date
 
-SELECT COUNT(*)
+SELECT *
 FROM meeting M
 WHERE M.location = $1 AND M.scheduled = to_timestamp($2);
