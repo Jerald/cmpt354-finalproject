@@ -166,7 +166,7 @@ export class Server
                 }
 
                 Promise.all(queries)
-                    .then((results) => render_index(res, { q6_insert: true, body: req.body }))
+                    .then((result) => render_index(res, { q6_insert: true, body: req.body }))
                     .catch((error) => res.json({ error }));
             }
             else
@@ -176,17 +176,21 @@ export class Server
         });
 
         this.express.post("/sql/q7_room_check", (req, res) => {
+            console.log("[q7 route] Entering q7 room check route");
             let room: string | undefined = req.body?.q7_room_name;
             let date: Date | undefined = req.body?.q7_date;
 
+            console.log("[q7 route] Checking if room and date are defined");
             if (room && date)
             {
+                console.log("[q7 route] Starting query...");
                 this.postgres.q7_room_check(room, date)
                     .then((result) => {
                         let status = result.rowCount == 0;
+                        console.log("[q7 route] Query returned, rendering index")
                         render_index(res, { q7_room_check: status, result, body: req.body, q7_error_room_availability: !status });
                     })
-                    .catch((error) => res.json({ text: "This is the q7 room check error", error }));
+                    .catch((error) => { console.log("[q7 route] Error from query"); res.json({ text: "This is the q7 room check error", error }) });
             }
             else
             {
