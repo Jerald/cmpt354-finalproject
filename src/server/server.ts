@@ -232,6 +232,8 @@ export class Server
                 render_index(res, { q7_error_incorrect_num_calls: true, body: req.body });
             }
 
+            console.log("[q7] Calls: '" + JSON.stringify(calls) + "'");
+
             let date: Date = new Date(req.body?.q7_date);
 
             this.postgres.q7_schedule_check(date, [ calls[0], calls[1], calls[2] ])
