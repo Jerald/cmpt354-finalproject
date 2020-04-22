@@ -112,16 +112,14 @@ export class Server
 
         this.express.post("/sql/q4", (req, res) => {
             let raw_date: string | undefined = req.body?.q4_date;
-            console.log("[q4] Raw date: '" + raw_date + "'");
 
-            if (raw_date == undefined)
+            if (raw_date == undefined || raw_date == "")
             {
                 render_index(res, { q4_error_input: true, body: req.body });
                 return;
             }
 
             let date: Date = new Date(raw_date);
-            console.log("[q4] Date: '" + date + "'");
 
             this.postgres.q4(date)
                 .then((result) => {
@@ -202,10 +200,10 @@ export class Server
             let room: string | undefined = req.body?.q7_room_name;
             let raw_date: string | undefined = req.body?.q7_date;
 
-            if (raw_date == undefined || room == undefined)
+            if (raw_date == undefined || raw_date == "" || room == undefined)
             {
                 render_index(res, { q7_error_input: true, body: req.body });
-                return
+                return;
             }
 
             let date: Date = new Date(raw_date);
@@ -223,7 +221,7 @@ export class Server
             let room: string | undefined = req.body?.q7_room_name;
             let calls: number[] | undefined = req.body?.q7_schedule_calls;
             
-            if (raw_date == undefined || room == undefined || calls == undefined)
+            if (raw_date == undefined || raw_date == "" || room == undefined || calls == undefined)
             {
                 render_index(res, { q7_error_input: true, body: req.body });
                 return;
@@ -244,7 +242,7 @@ export class Server
             let room: string | undefined = req.body?.q7_room_name;
             let calls: number[] | undefined = req.body?.q7_schedule_calls;
             
-            if (raw_date == undefined || room == undefined || calls == undefined)
+            if (raw_date == undefined || raw_date == "" || room == undefined || calls == undefined)
             {
                 render_index(res, { q7_error_input: true, body: req.body });
                 return;
