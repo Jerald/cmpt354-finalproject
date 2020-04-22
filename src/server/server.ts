@@ -59,12 +59,15 @@ export class Server
 
             if (month == undefined)
             {
-                res.json({ error: "No date supplied!" });
+                render_index(res, { q1_error_input: true, body: req.body })
                 return;
             }
 
             this.postgres.q1(month)
-                .then((result) => render_index(res, { q1: true, result, body: req.body }))
+                .then((result) => {
+                    let status = result.rowCount != 0;
+                    render_index(res, { q1: status, result, body: req.body, q1_error_no_results: !status });
+                })
                 .catch((error) => res.json({ error }));
         });
 
@@ -77,12 +80,15 @@ export class Server
             if (month && area && first_name && last_name)
             {
                 this.postgres.q2(month, area, first_name, last_name)
-                    .then((result) => render_index(res, { q2: true, result, body: req.body }))
+                    .then((result) => {
+                        let status = result.rowCount != 0;
+                        render_index(res, { q2: status, result, body: req.body, q2_error_no_results: !status });
+                    })
                     .catch((error) => res.json({ error }));
             }
             else
             {
-                res.json({ error: "One of the inputs was undefined!" });
+                render_index(res, { q2_error_input: true, body: req.body });
             }
         });
 
@@ -92,12 +98,15 @@ export class Server
             if (area)
             {
                 this.postgres.q3(area)
-                    .then((result) => render_index(res, { q3: true, result, body: req.body }))
+                    .then((result) => {
+                        let status = result.rowCount != 0;
+                        render_index(res, { q3: status, result, body: req.body, q3_error_no_results: !status });
+                    })
                     .catch((error) => res.json({ error }));
             }
             else
             {
-                res.json({ error: "Area was undefined!" });
+                render_index(res, { q3_error_input: true, body: req.body });
             }
         });
 
@@ -107,12 +116,15 @@ export class Server
             if (date)
             {
                 this.postgres.q4(date)
-                    .then((result) => render_index(res, { q4: true, result, body: req.body }))
+                    .then((result) => {
+                        let status = result.rowCount != 0;
+                        render_index(res, { q4: status, result, body: req.body, q4_error_no_results: !status });
+                    })
                     .catch((error) => res.json({ error }));
             }
             else
             {
-                res.json({ error: "Date was undefined!" });
+                render_index(res, { q4_error_input: true, body: req.body });
             }
         });
 
@@ -122,12 +134,15 @@ export class Server
             if (area)
             {
                 this.postgres.q5(area)
-                    .then((result) => render_index(res, { q5: true, result, body: req.body }))
+                    .then((result) => {
+                        let status = result.rowCount != 0;
+                        render_index(res, { q5: status, result, body: req.body, q5_error_no_results: !status });
+                    })
                     .catch((error) => res.json({ error }));
             }
             else
             {
-                res.json({ error: "Area was undefined!" });
+                render_index(res, { q5_error_input: true, body: req.body });
             }
         });
 
@@ -145,7 +160,7 @@ export class Server
             }
             else
             {
-                res.json({ error: "Proposal ID was undefined!" });
+                render_index(res, { q6_error_input: true, body: req.body });
             }
         });
 
@@ -153,15 +168,16 @@ export class Server
             let proposal_id: number | undefined = req.body?.q6_proposal_id;
             let reviewers: number[] | undefined = req.body?.q6_insert_reviewers;
 
+            if (reviewers && reviewers.length == 0)
+            {
+                render_index(res, { q6_error_no_reviewers_selected: true, body: req.body });
+                return
+            }
+
             if (proposal_id && reviewers)
             {
                 console.log("Reviewers: " + JSON.stringify(reviewers));
 
-                if (reviewers.length == 0)
-                {
-                    render_index(res, { q6_error_no_reviewers_selected: true, body: req.body });
-                    return
-                }
 
                 let queries = [];
                 for (let i = 0; i < reviewers.length; i++)
@@ -175,7 +191,7 @@ export class Server
             }
             else
             {
-                res.json({ error: "Proposal id or reviewers was undefined!" });
+                render_index(res, { q6_error_input: true, body: req.body });
             }
         });
 
@@ -194,7 +210,7 @@ export class Server
             }
             else
             {
-                res.json({ error: "Room or date was undefined!"});
+                render_index(res, { q7_error_input: true, body: req.body });
             }
         });
 
@@ -214,7 +230,7 @@ export class Server
             }
             else
             {
-                res.json({ error: "Date, room, or calls was undefined!" });
+                render_index(res, { q7_error_input: true, body: req.body });
             }
         });
 
@@ -238,7 +254,7 @@ export class Server
             }
             else
             {
-                res.json({ error: "Date, room, or calls was undefined!"});
+                render_index(res, { q7_error_input: true, body: req.body });
             }
         });
         

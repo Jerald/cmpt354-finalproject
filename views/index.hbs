@@ -31,6 +31,14 @@
             </form>
             
             {{#if q1}} <div id="q1_results">{{> result_table}}</div> {{/if}}
+
+            {{#if q1_error_input}}
+                <div><strong>Invalid input.</strong></div>
+            {{/if}}
+
+            {{#if q1_error_no_results}}
+                <div><strong>No results found.</strong></div>
+            {{/if}}
         </div>
 
         <div id="q2">
@@ -69,6 +77,14 @@
             </form>
 
             {{#if q2}} <div id="q2_results">{{> result_table}}</div> {{/if}}
+
+            {{#if q2_error_input}}
+                <div><strong>Invalid input.</strong></div>
+            {{/if}}
+
+            {{#if q2_error_no_results}}
+                <div><strong>No results found.</strong></div>
+            {{/if}}
         </div>
 
         <div id="q3">
@@ -92,6 +108,14 @@
             </form>
 
             {{#if q3}} <div id="q3_results">{{> result_table}}</div> {{/if}}
+
+            {{#if q3_error_input}}
+                <div><strong>Invalid input.</strong></div>
+            {{/if}}
+
+            {{#if q3_error_no_results}}
+                <div><strong>No results found.</strong></div>
+            {{/if}}
         </div>
 
         <div id="q4">
@@ -111,6 +135,14 @@
             </form>
 
             {{#if q4}} <div id="q4_results">{{> result_table}}</div> {{/if}}
+
+            {{#if q4_error_input}}
+                <div><strong>Invalid input.</strong></div>
+            {{/if}}
+
+            {{#if q4_error_no_results}}
+                <div><strong>No results found.</strong></div>
+            {{/if}}
         </div>
 
         <div id="q5">
@@ -134,6 +166,14 @@
             </form>
 
             {{#if q5}} <div id="q5_results">{{> result_table}}</div> {{/if}}
+
+            {{#if q5_error_input}}
+                <div><strong>Invalid input.</strong></div>
+            {{/if}}
+
+            {{#if q5_error_no_results}}
+                <div><strong>No results found.</strong></div>
+            {{/if}}
         </div>
 
         <div id="q6">
@@ -163,6 +203,15 @@
 
             {{#if q6_insert}}
                 <div><strong>Reviewers assigned!</strong></div>
+            {{/if}}
+
+            
+            {{#if q6_error_input}}
+                <div><strong>Invalid input.</strong></div>
+            {{/if}}
+
+            {{#if q6_error_no_results}}
+                <div><strong>No results found.</strong></div>
             {{/if}}
 
             {{#if q6_error_reviewers_unavailable}}
@@ -228,6 +277,15 @@
 
             {{#if q7_insert}}
                 <div><strong>Calls scheduled successfully.</strong></div>
+            {{/if}}
+
+
+            {{#if q7_error_input}}
+                <div><strong>Invalid input.</strong></div>
+            {{/if}}
+
+            {{#if q7_error_no_results}}
+                <div><strong>No results found.</strong></div>
             {{/if}}
 
             {{#if q7_error_room_availability}}
