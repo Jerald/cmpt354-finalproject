@@ -35,10 +35,8 @@ SELECT * FROM (
 UNION
 
 SELECT 0
-WHERE (
-    SELECT COUNT(*) 
-    FROM grant_call G 
-    WHERE G.id = $2 OR G.id = $3 OR G.id = $4
-) != 3;
+WHERE $2 NOT IN ( SELECT id FROM grant_call )
+OR $3 NOT IN ( SELECT id FROM grant_call )
+OR $4 NOT IN ( SELECT id FROM grant_call );
 
 -- if the count is non-zero (there are conflicts for scheduling), return impossible
