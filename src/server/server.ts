@@ -221,9 +221,16 @@ export class Server
 
             if (date && room && calls)
             {
-                this.postgres.q7_insert(room, date, [ calls[0], calls[1], calls[2] ])
-                    .then((result) => render_index(res, { q7_insert: true, body: req.body }))
-                    .catch((error) => res.json({ error: JSON.stringify(error) }));
+                let queries = [];
+
+                queries.push(this.postgres.q7_insert_meeting(room, date));
+                queries.push(this.postgres.q7_insert_meeting_call(room, date, calls[0]));
+                queries.push(this.postgres.q7_insert_meeting_call(room, date, calls[1]));
+                queries.push(this.postgres.q7_insert_meeting_call(room, date, calls[2]));
+
+                Promise.all(queries)
+                    .then((results) => render_index(res, { q7_insert: true, body: req.body }))
+                    .catch((error) => res.json({ error }));
             }
             else
             {
