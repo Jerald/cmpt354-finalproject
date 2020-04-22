@@ -160,8 +160,17 @@
                     {{> q6_insert_table}}
                 </form>
             {{/if}}
+
             {{#if q6_insert}}
                 <div><strong>Reviewers assigned!</strong></div>
+            {{/if}}
+
+            {{#if q6_error_reviewers_unavailable}}
+                <div><strong>No available reviewers for that proposal id.</strong></div>
+            {{/if}}
+
+            {{#if q6_error_no_reviewers_selected}}
+                <div><strong>No reviewers selected for assignment. Please select at least one.</strong></div>
             {{/if}}
         </div>
 

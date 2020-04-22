@@ -138,8 +138,8 @@ export class Server
             {
                 this.postgres.q6_query(proposal_id)
                     .then((result) => {
-                        console.log("[q6_query] Result: " + JSON.stringify(result));
-                        render_index(res, { q6_query: true, result, body: req.body });
+                        let status = result.rowCount != 0;
+                        render_index(res, { q6_query: status, result, body: req.body, q6_error_reviewers_unavailable: !status });
                     })
                     .catch((error) => res.json({ error }));
             }
@@ -150,14 +150,18 @@ export class Server
         });
 
         this.express.post("/sql/q6_insert", (req, res) => {
-            let body: any | undefined = req.body;
+            let proposal_id: number | undefined = req.body?.q6_proposal_id;
+            let reviewers: number[] | undefined = req.body?.q6_insert_reviewers;
 
-            if (body)
+            if (proposal_id && reviewers)
             {
-                let proposal_id: number = body.q6_proposal_id;
-                let reviewers: number[] = body.q6_insert_reviewers;
-
                 console.log("Reviewers: " + JSON.stringify(reviewers));
+
+                if (reviewers.length == 0)
+                {
+                    render_index(res, { q6_error_no_reviewers_selected: true, body: req.body });
+                    return
+                }
 
                 let queries = [];
                 for (let i = 0; i < reviewers.length; i++)
@@ -171,7 +175,7 @@ export class Server
             }
             else
             {
-                res.json({ error: "Body was undefined!" });
+                res.json({ error: "Proposal id or reviewers was undefined!" });
             }
         });
 
