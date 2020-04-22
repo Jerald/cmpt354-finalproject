@@ -183,7 +183,7 @@ export class Server
             console.log("[q7 route] Checking if room and date are defined");
             if (room && date)
             {
-                console.log("[q7 route] Starting query...");
+                console.log("[q7 route] Starting query with room: " + room + ", and date: " + date.toString() + "...");
                 this.postgres.q7_room_check(room, date)
                     .then((result) => {
                         let status = result.rowCount == 0;
