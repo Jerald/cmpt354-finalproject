@@ -180,10 +180,10 @@
             <form action="/sql/q7_room_check" method="post" id="q7_room_check_form">
                 <label for="q7_room_name">Enter room name to check:</label>
                 <input type="text" name="q7_room_name" id="q7_room_name" {{#with body.q7_room_name}} value="{{this}}" {{/with}}>
-
+                <br>
                 <label for="q7_date">Enter date to check:</label>
                 <input type="date" name="q7_date" id="q7_date" {{#with body.q7_date}} value="{{this}}" {{/with}}>
-
+                <br>
                 <input type="submit" value="Submit">
             </form>
 
@@ -191,12 +191,16 @@
                 <div>Enter the 3 call ids to schedule:</div>
                 <form action="/sql/q7_schedule_check" method="post">
                     <input type="number" name="q7_schedule_calls[]" id="q7_schedule_call1" {{#with body.q7_schedule_calls}} value="{{index this 0}}" {{/with}}>
+                    <br>
                     <input type="number" name="q7_schedule_calls[]" id="q7_schedule_call2" {{#with body.q7_schedule_calls}} value="{{index this 1}}" {{/with}}>
+                    <br>
                     <input type="number" name="q7_schedule_calls[]" id="q7_schedule_call3" {{#with body.q7_schedule_calls}} value="{{index this 2}}" {{/with}}>
+                    <br>
+                    <input type="submit" value="Submit">
 
                     <input type="hidden" name="q7_date" value="{{body.q7_date}}">
                 </form>
-                <div id="q7_results">{{> result_table}}</div>
+                {{!-- <div id="q7_results">{{> result_table}}</div> --}}
             {{/if}}
 
             {{#if q7_schedule_check}}
