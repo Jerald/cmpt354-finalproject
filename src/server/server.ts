@@ -219,7 +219,7 @@ export class Server
         this.express.post("/sql/q7_schedule_check", (req, res) => {
             let raw_date: string | undefined = req.body?.q7_date;
             let room: string | undefined = req.body?.q7_room_name;
-            let calls: number[] | undefined = req.body?.q7_schedule_calls;
+            let calls: any[] | undefined = req.body?.q7_schedule_calls;
             
             if (raw_date == undefined || raw_date == "" || room == undefined || calls == undefined)
             {
@@ -227,7 +227,7 @@ export class Server
                 return;
             }
 
-            if (calls.length != 3)
+            if (calls[0] == "" || calls[1] == "" || calls[2] == "" || calls.length != 3)
             {
                 render_index(res, { q7_error_incorrect_num_calls: true, body: req.body });
             }
