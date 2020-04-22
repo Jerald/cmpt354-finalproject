@@ -112,6 +112,7 @@ export class Server
 
         this.express.post("/sql/q4", (req, res) => {
             let raw_date: string | undefined = req.body?.q4_date;
+            console.log("[q4] Raw date: '" + raw_date + "'");
 
             if (raw_date == undefined)
             {
@@ -120,6 +121,7 @@ export class Server
             }
 
             let date: Date = new Date(raw_date);
+            console.log("[q4] Date: '" + date + "'");
 
             this.postgres.q4(date)
                 .then((result) => {
