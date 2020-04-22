@@ -178,7 +178,7 @@ export class Server
         this.express.post("/sql/q7_room_check", (req, res) => {
             console.log("[q7 route] Entering q7 room check route");
             let room: string | undefined = req.body?.q7_room_name;
-            let date: Date | undefined = req.body?.q7_date;
+            let date: Date | undefined = new Date(req.body?.q7_date);
 
             console.log("[q7 route] Checking if room and date are defined");
             if (room && date)
