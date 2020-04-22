@@ -287,6 +287,10 @@
                 <div><strong>No results found.</strong></div>
             {{/if}}
 
+            {{#if q7_error_incorrect_num_calls}}
+                <div><strong>Incorrect number of calls entered. Must enter 3 call numbers.</strong></div>
+            {{/if}}
+
             {{#if q7_error_room_availability}}
                 <div><strong>Room is not available on that day.</strong></div>
             {{/if}}
