@@ -30,6 +30,13 @@ SELECT * FROM (
     JOIN proposal P ON G.id = P.callid   
     JOIN review R ON R.proposalid = P.id
     WHERE G.id = $2 OR G.id = $3 OR G.id = $4
-) SCHEDULE_CONFLICTS;
+) SCHEDULE_CONFLICTS
+
+UNION
+
+SELECT 0
+WHERE $2 NOT IN ( SELECT id FROM grant_call )
+OR $3 NOT IN ( SELECT id FROM grant_call )
+OR $4 NOT IN ( SELECT id FROM grant_call );
 
 -- if the count is non-zero (there are conflicts for scheduling), return impossible
