@@ -111,21 +111,22 @@ export class Server
         });
 
         this.express.post("/sql/q4", (req, res) => {
-            let date: Date | undefined = new Date(req.body?.q4_date);
+            let raw_date: string | undefined = req.body?.q4_date;
 
-            if (date)
-            {
-                this.postgres.q4(date)
-                    .then((result) => {
-                        let status = result.rowCount != 0;
-                        render_index(res, { q4: status, result, body: req.body, q4_error_no_results: !status });
-                    })
-                    .catch((error) => res.json({ error }));
-            }
-            else
+            if (raw_date == undefined)
             {
                 render_index(res, { q4_error_input: true, body: req.body });
+                return;
             }
+
+            let date: Date = new Date(raw_date);
+
+            this.postgres.q4(date)
+                .then((result) => {
+                    let status = result.rowCount != 0;
+                    render_index(res, { q4: status, result, body: req.body, q4_error_no_results: !status });
+                })
+                .catch((error) => res.json({ error }));
         });
 
         this.express.post("/sql/q5", (req, res) => {
@@ -197,65 +198,68 @@ export class Server
 
         this.express.post("/sql/q7_room_check", (req, res) => {
             let room: string | undefined = req.body?.q7_room_name;
-            let date: Date | undefined = new Date(req.body?.q7_date);
+            let raw_date: string | undefined = req.body?.q7_date;
 
-            if (room && date)
-            {
-                this.postgres.q7_room_check(room, date)
-                    .then((result) => {
-                        let status = result.rowCount == 0;
-                        render_index(res, { q7_room_check: status, result, body: req.body, q7_error_room_availability: !status });
-                    })
-                    .catch((error) => res.json({ text: "This is the q7 room check error", error: JSON.stringify(error) }));
-            }
-            else
+            if (raw_date == undefined || room == undefined)
             {
                 render_index(res, { q7_error_input: true, body: req.body });
+                return
             }
+
+            let date: Date = new Date(raw_date);
+
+            this.postgres.q7_room_check(room, date)
+                .then((result) => {
+                    let status = result.rowCount == 0;
+                    render_index(res, { q7_room_check: status, result, body: req.body, q7_error_room_availability: !status });
+                })
+                .catch((error) => res.json({ text: "This is the q7 room check error", error: JSON.stringify(error) }));
         });
 
         this.express.post("/sql/q7_schedule_check", (req, res) => {
-            let date: Date | undefined = new Date(req.body?.q7_date);
+            let raw_date: string | undefined = req.body?.q7_date;
             let room: string | undefined = req.body?.q7_room_name;
             let calls: number[] | undefined = req.body?.q7_schedule_calls;
-
-            if (date && room && calls)
-            {
-                this.postgres.q7_schedule_check(date, [ calls[0], calls[1], calls[2] ])
-                    .then((result) => {
-                        let status = result.rowCount == 0;
-                        render_index(res, { q7_schedule_check: status, q7_room_check: true, body: req.body, q7_error_schedule: !status});
-                    })
-                    .catch((error) => res.json({ error }));
-            }
-            else
+            
+            if (raw_date == undefined || room == undefined || calls == undefined)
             {
                 render_index(res, { q7_error_input: true, body: req.body });
+                return;
             }
+
+            let date: Date = new Date(req.body?.q7_date);
+
+            this.postgres.q7_schedule_check(date, [ calls[0], calls[1], calls[2] ])
+                .then((result) => {
+                    let status = result.rowCount == 0;
+                    render_index(res, { q7_schedule_check: status, q7_room_check: true, body: req.body, q7_error_schedule: !status});
+                })
+                .catch((error) => res.json({ error }));
         });
 
         this.express.post("/sql/q7_insert", (req, res) => {
-            let date: Date | undefined = new Date(req.body?.q7_date);
+            let raw_date: string | undefined = req.body?.q7_date;
             let room: string | undefined = req.body?.q7_room_name;
             let calls: number[] | undefined = req.body?.q7_schedule_calls;
-
-            if (date && room && calls)
-            {
-                let queries = [];
-
-                queries.push(this.postgres.q7_insert_meeting(room, date));
-                queries.push(this.postgres.q7_insert_meeting_call(room, date, calls[0]));
-                queries.push(this.postgres.q7_insert_meeting_call(room, date, calls[1]));
-                queries.push(this.postgres.q7_insert_meeting_call(room, date, calls[2]));
-
-                Promise.all(queries)
-                    .then((results) => render_index(res, { q7_insert: true, body: req.body }))
-                    .catch((error) => res.json({ error }));
-            }
-            else
+            
+            if (raw_date == undefined || room == undefined || calls == undefined)
             {
                 render_index(res, { q7_error_input: true, body: req.body });
+                return;
             }
+
+            let date: Date = new Date(req.body?.q7_date);
+
+            let queries = [];
+
+            queries.push(this.postgres.q7_insert_meeting(room, date));
+            queries.push(this.postgres.q7_insert_meeting_call(room, date, calls[0]));
+            queries.push(this.postgres.q7_insert_meeting_call(room, date, calls[1]));
+            queries.push(this.postgres.q7_insert_meeting_call(room, date, calls[2]));
+
+            Promise.all(queries)
+                .then((results) => render_index(res, { q7_insert: true, body: req.body }))
+                .catch((error) => res.json({ error }));
         });
         
         this.express.post("/sql_submit", (req, res) => {
