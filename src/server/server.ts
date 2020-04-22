@@ -47,7 +47,7 @@ export class Server
     start(): void
     {
         this.express.use(express.json());
-        this.express.use(express.urlencoded());
+        this.express.use(express.urlencoded({ extended: true }));
         this.express.use(express.static(config.SERVE_DIR));
 
         this.express.get("/", (req, res) => {
@@ -148,9 +148,9 @@ export class Server
         });
 
         this.express.post("/sql/q6_query", (req, res) => {
-            let proposal_id: number | undefined = req.body?.q6_proposal_id;
+            let proposal_id: number | undefined = Number(req.body?.q6_proposal_id) || undefined;
 
-            if (proposal_id)
+            if (proposal_id && proposal_id <= 0x7FFFFFFF && proposal_id >= 0)
             {
                 this.postgres.q6_query(proposal_id)
                     .then((result) => {
@@ -230,7 +230,10 @@ export class Server
             if (calls[0] == "" || calls[1] == "" || calls[2] == "" || calls.length != 3)
             {
                 render_index(res, { q7_room_check: true, q7_error_incorrect_num_calls: true, body: req.body });
+                return;
             }
+
+            if (calls[0] > 0x7FFFFFFF || calls[0] < 0 || calls[1] > 0x7FFFFFFF || calls[1] < 0 || calls[2] > 0x7FFFFFFF || calls[2] < 0)
 
             console.log("[q7] Calls: '" + JSON.stringify(calls) + "'");
 
@@ -258,6 +261,7 @@ export class Server
             if (calls[0] == "" || calls[1] == "" || calls[2] == "" || calls.length != 3)
             {
                 render_index(res, { q7_error_incorrect_num_calls: true, body: req.body });
+                return;
             }
 
             let date: Date = new Date(req.body?.q7_date);

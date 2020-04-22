@@ -7,7 +7,7 @@ import { Server } from "./server/server";
 async function main(): Promise<void>
 {
     let client = new Client({
-        connectionString: process.env.DATABASE_URL,
+        connectionString: config.DATABASE_URL,
         ssl: {
             rejectUnauthorized: false,
         }
@@ -24,7 +24,8 @@ async function main(): Promise<void>
     }
     catch (error)
     {
-        console.log(`[Main] Client connection error: ${error}`);
+        console.log(`[ERROR] Client connection error: ${error}`);
+        process.exit(1);
     }
 }
 
