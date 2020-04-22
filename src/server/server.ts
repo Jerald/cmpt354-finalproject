@@ -169,7 +169,7 @@ export class Server
             let proposal_id: number | undefined = req.body?.q6_proposal_id;
             let reviewers: number[] | undefined = req.body?.q6_insert_reviewers;
 
-            if (reviewers && reviewers.length == 0)
+            if (reviewers == undefined || reviewers.length == 0)
             {
                 render_index(res, { q6_error_no_reviewers_selected: true, body: req.body });
                 return
