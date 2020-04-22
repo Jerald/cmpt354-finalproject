@@ -10,13 +10,19 @@
 --
 -- in which we can return impossible.
 
+-- $1: Meeting date
+-- $2: Call 1
+-- $3: Call 2
+-- $4: Call 3
+
+
 SELECT COUNT(*) FROM (
     SELECT R.reviewerid
     FROM grant_call G
     JOIN proposal P ON G.id = P.callid   
     JOIN review R ON R.proposalid = P.id
     WHERE G.id IN (
-        SELECT calls FROM meeting_calls WHERE meet_date = $1
+        SELECT calls FROM meeting_calls WHERE meet_date = to_timestamp($1)
     )
     INTERSECT
     SELECT R.reviewerid

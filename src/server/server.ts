@@ -34,9 +34,14 @@ export class Server
         this.express.set("view engine", "hbs");
 
         hbs.registerPartials(config.VIEWS_DIR);
+
         hbs.registerHelper("eq", (v1, v2) => {
             return v1 == v2;
         });
+
+        hbs.registerHelper("index", (array, index) => {
+            return array[index];
+        })
     }
 
     start(): void
@@ -161,15 +166,48 @@ export class Server
                 }
 
                 Promise.all(queries)
-                    .then((results) => {
-                        render_index(res, { q6_insert: true, body: req.body });
-                    })
+                    .then((results) => render_index(res, { q6_insert: true, body: req.body }))
+                    .catch((error) => res.json({ error }));
             }
             else
             {
                 res.json({ error: "Body was undefined!" });
             }
-        })
+        });
+
+        this.express.post("/sql/q7_room_check", (req, res) => {
+            let room: string | undefined = req.body?.q7_room_name;
+            let date: Date | undefined = req.body?.q7_date;
+
+            if (room && date)
+            {
+                this.postgres.q7_room_check(room, date)
+                    .then((result) => {
+                        let status = result.rowCount == 0;
+                        render_index(res, { q7_room_check: status, result, body: req.body, q7_error_room_availability: !status });
+                    })
+                    .catch((error) => res.json({ error }))
+            }
+        });
+
+        this.express.post("/sql/q7_schedule_check", (req, res) => {
+            if (req.body)
+            {
+                let date: Date = req.body.q7_date;
+                let calls: number[] = req.body.q7_schedule_calls;
+
+                this.postgres.q7_schedule_check(date, [ calls[0], calls[1], calls[2] ])
+                    .then((result) => {
+                        let status = result.rowCount == 0;
+                        render_index(res, { q7_schedule_check: status, q7_room_check: true, body: req.body, q7_error_schedule: !status})
+                    })
+                    .catch((error) => res.json({ error }));
+            }
+            else
+            {
+                res.json({ error: "Body was undefined!" });
+            }
+        });
         
         this.express.post("/sql_submit", (req, res) => {
             console.log("[Server] Got a sql submit...");
