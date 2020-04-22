@@ -223,7 +223,7 @@ export class Server
             {
                 this.postgres.q7_insert(room, date, [ calls[0], calls[1], calls[2] ])
                     .then((result) => render_index(res, { q7_insert: true, body: req.body }))
-                    .catch((error) => res.json({ error }));
+                    .catch((error) => res.json({ error: JSON.stringify(error) }));
             }
             else
             {
